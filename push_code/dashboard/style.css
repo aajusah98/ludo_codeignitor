@@ -1,0 +1,62 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+@media screen and (min-width: 950px) {
+  .padding-large {
+    padding: 0 10% !important;
+  }
+}
+
+@media screen and (min-width: 650px) {
+  .flex-small {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  .content-width {
+    width: 22%;
+  }
+
+  .profile-width {
+    width: 25%;
+  }
+
+  .game-detail-width {
+    width: 73%;
+  }
+
+  .game-detail-content-width {
+    width: 18%;
+  }
+
+  .flex {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  .margin-top-large {
+    margin-top: 0 !important;
+  }
+}
+
+.margin-top {
+  margin-top: 2%;
+}
+
+.cover-background {
+  background: rgba(4, 4, 4, 0.9411764705882353);
+  background-size: cover;
+}
+
+a {
+  text-decoration: none !important;
+}
+
+.select-pointer {
+  cursor: pointer !important;
+}

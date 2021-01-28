@@ -1,0 +1,97 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Allerta Stencil";
+}
+
+@media screen and (min-width: 950px) {
+  .padding-large {
+    padding: 0 10% !important;
+  }
+}
+
+@media screen and (max-width: 780px) {
+  .log-out-hide {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 650px) {
+  .log-out-hide {
+    display: inline;
+  }
+  .flex-small {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  .content-width {
+    width: 22%;
+  }
+
+  .profile-width {
+    width: 25%;
+  }
+
+  .game-detail-width {
+    width: 73%;
+  }
+
+  .game-detail-width-home {
+    width: 50%;
+  }
+
+  .game-detail-content-width {
+    width: 18%;
+  }
+
+  .flex {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  .margin-top-large {
+    margin-top: 0 !important;
+  }
+}
+
+.margin-top {
+  margin-top: 2%;
+}
+
+.cover-background {
+  background: rgba(4, 4, 4, 0.9411764705882353);
+  background-size: cover;
+}
+
+a {
+  text-decoration: none !important;
+}
+
+.select-pointer {
+  cursor: pointer !important;
+}
+
+/* Start Home */
+.home-hero {
+  display: flex;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+.title-font-size {
+  font-size: 20px;
+}
+
+.info-font-size {
+  font-size: 18px;
+}
+
+.p-font-size {
+  font-size: 18px;
+}
+
+/*End Home */
