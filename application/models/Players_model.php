@@ -31,6 +31,34 @@ public function add_money_wallet($money,$id)
 
 
 
+		public function get_tranHistory($id)
+		{
+		
+		$this->db->select('ORDERID,TXNID,TXNAMOUNT,PAYMENTMODE,TXNDATE,STATUS');
+		$this->db->from('user_transaction_history');
+		$this->db->where('userId', $id);
+		return $this->db->get()->result_array();
+
+
+		}
+
+
+public function set_match_details($uid)
+{
+	 $this->db->select('*');
+     $this->db->from('match_details');
+     $this->db->where('Match_SetBy', $uid );
+     return $this->db->get()->result_array();
+}
+
+	
+public function all_match_details()
+{
+	 $this->db->select('*');
+     $this->db->from('match_details');
+     return $this->db->get()->result_array();
+}
+
 
 
     }
