@@ -4,6 +4,21 @@
   box-sizing: border-box;
   font-family: "Allerta Stencil";
 }
+/* hover */
+.nav-link-hover:hover {
+  background-color: darkgray;
+}
+
+@media screen and (min-width: 576px) {
+  .log-out-width {
+    width: 100%;
+  }
+
+  .log-out-right {
+    float: right;
+   margin-right: 36px;
+  }
+}
 
 @media screen and (min-width: 950px) {
   .padding-large {
@@ -60,11 +75,10 @@
 
 .margin-top {
   margin-top: 2%;
-  margin-bottom: 3%;
 }
 
 .cover-background {
-  background: rgba(4, 4, 4, 0.9411764705882353);
+  background: rgba(4, 4, 4, 0.9411764705882353) !important;
   background-size: cover;
 }
 
@@ -96,3 +110,57 @@ a {
 }
 
 /*End Home */
+
+/* Playing Ludo */
+#numberInput {
+  text-align: center;
+  font-size: 30px;
+}
+
+.hide-errorMsg {
+  display: none !important;
+}
+
+.errorMsg {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.errorMsg-text {
+  letter-spacing: 1.5px;
+  text-align: center !important;
+}
+
+.errorMsg-width {
+  width: 40rem;
+}
+
+.balance-width {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.show-cancelled {
+  display: none;
+}
+
+.play-style {
+  width: 8rem;
+  text-align: center;
+  cursor: pointer;
+}
+
+.card-body-style {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+/* End Playing Ludo */
+
+.dropdown-toggle::after {
+  content: none;
+}
+
+

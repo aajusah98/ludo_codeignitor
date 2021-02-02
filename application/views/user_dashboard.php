@@ -14,7 +14,7 @@
 </head>
 
 <body class="cover-background">
-
+  <div style="position: relative;">
 <!-- nav bar -->
 <?php $this->load->view('navigation'); ?>
 
@@ -46,7 +46,7 @@
               
               <div class="card text-center bg-secondary content-width  mb-2"  >
                 <div class="card-body">
-                  <a href="#">
+                  <a href="<?php echo base_url();  ?>welcome/letsPlayLudo">
                     <h3 class="card-text text-white"> <i class="fa fa-play" aria-hidden="true"></i></h3>
                     <h6 class="text-warning font-weight-bold">Lets Play Ludo</h6></a>
                 </div>
@@ -141,7 +141,7 @@
                     </div>
             
             <div class="card-header  mb-1 bg-secondary">
-                      <a href="#" class="text-warning"><i class="fa fa-credit-card" aria-hidden="true"></i>
+                      <a href="<?php echo base_url(); ?>welcome/transactionHistory" class="text-warning"><i class="fa fa-credit-card" aria-hidden="true"></i>
                         Transactions</a>
                       </div>
            <a href="<?php echo base_url(); ?>welcome/logout" type="button" class="card-header text-white mb-1 bg-secondary">
@@ -203,10 +203,10 @@
     </div>
             <!-- End Content -->
 
-    </div>
-  </div>
+  
 
   <!-- footer -->
  <?php $this->load->view('footer'); ?>
+   </div>
 </body>
 </html>

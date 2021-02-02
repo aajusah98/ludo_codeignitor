@@ -19,49 +19,72 @@
 <!-- partial:index.partial.html -->
 <div class="container">
   <div class="row">
- 
-      <table class="table table-striped" id="trans_table">
+  
+  <div class="table-responsive">
+      <table class="display" id="trans_table" style="width:100%">
         <thead>
           <tr>
-            <th>Firstname</th>
-            <th>Lastname</th>
-            <th>Email</th>
+            <th>Payment Mode</th>
+            <th>Amount</th>
+            <th>Date</th>
+            <th>TXNID</th>
+            <th>ORDERID</th>
+            <th>Status</th>
+
           </tr>
         </thead>
         <tbody>
+          <?php foreach ($transaction as $key) {?>
           <tr>
-            <td>John</td>
-            <td>Doe</td>
-            <td>john@example.com</td>
+            <td><?php echo $key['PAYMENTMODE'];  ?></td>
+            <td><?php echo $key['TXNAMOUNT'];  ?></td>
+            <td><?php echo $key['TXNDATE'];  ?></td>
+            <td><?php echo $key['TXNID'];  ?></td>
+            <td><?php echo $key['ORDERID'];  ?></td>
+            <td><?php echo $key['STATUS'];  ?></td>
           </tr>
-          <tr>
-            <td>Mary</td>
-            <td>Moe</td>
-            <td>mary@example.com</td>
-          </tr>
-          <tr>
-            <td>July</td>
-            <td>Dooley</td>
-            <td>july@example.com</td>
-          </tr>
+
+          <?php } ?>
         </tbody>
       </table>   
-
+  </div>
 
   </div>
 </div>
 
 
 
+<script type="text/javascript">
+  $(document).ready(function() {
+    
+    $('#trans_table').DataTable( {
+      "pagingType": "full_numbers"
+    });
 
-<script>
+    // $("#myInput").on("keyup", function() {
+    //   var value = $(this).val().toLowerCase();
+    //   $("#myTable tr").filter(function() {
+    //     $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    //   });
+    // });
 
-    $(document).ready( function () {
-      $('#trans_table').DataTable();
-  } );
+    // $("#studentname").on("keyup", function() {
+    //   var value = $(this).val().toLowerCase();
+    //   $("#myTable tr").filter(function() {
+    //     $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    //   });
+    // });
 
-</script>
+    // $("#quizname").on("keyup", function() {
+    //   var value = $(this).val().toLowerCase();
+    //   $("#myTable tr").filter(function() {
+    //     $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    //   });
+    // });
 
+  });
+
+</script>  
 
   <!-- footer -->
  <?php $this->load->view('footer'); ?>

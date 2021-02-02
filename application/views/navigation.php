@@ -1,41 +1,37 @@
 
         <!-- Start Navbar -->
-          <nav class="navbar navbar-expand-md navbar-dark bg-dark padding-large ">
-                  <div class="container-fluid">
+          <nav class="navbar navbar-dark bg-dark navbar-expand-sm  padding-large">
                     <a class="navbar-brand text-success" href="<?php echo base_url(); ?>"><img src="<?php echo base_url(); ?>assets/images/logo v1.svg" alt="LudoBattles" width="120">
                     </a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                      <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarToggleExternalContent">
-                      <ul class="navbar-nav me-auto">
-                        <li class="nav-item">
-                          <a class="nav-link active" aria-current="page" href="<?php echo base_url(); ?>">Home</a>
+                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-list-2" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+                    <div class="collapse navbar-collapse" id="navbar-list-2">
+                      <ul class="navbar-nav active">
+                        <li class="nav-item active">
+                          <a class="nav-link nav-link-hover" aria-current="page" href="<?php echo base_url(); ?>">Home</a>
                         </li>
                         
                       </ul>
 
-                      
-                      
-                    </div>
                      <?php if ($this->session->userdata('isUserLogin')) { ?>
-                     <span class="ml-5 log-out-hide">
+                     <span class="log-out-width">
                       
-                      <a href="<?php echo base_url(); ?>welcome/userprofile/<?php echo $this->session->userdata('userinsertId'); ?>"> 
-                        <p class="navbar-text  text-success my-2" >
-                        <i class="fa fa-user" aria-hidden="true"></i> <span style="margin-right:20px; "> <?php echo $this->session->userdata('username');  ?>  </span>
+                      <a href="<?php echo base_url(); ?>welcome/userprofile/<?php echo $this->session->userdata('userinsertId'); ?>" class="log-out-right"> 
+                        <p class="navbar-text  text-success my-2 nav-link-hover" >
+                        <i class="fa fa-user" aria-hidden="true"></i> <span style="margin-right:0px; "> <?php echo $this->session->userdata('username');  ?>  </span>
                       </p>
                     </a>
 
-                      <a href="<?php echo base_url(); ?>welcome/logout"> 
-                        <p class="navbar-text  text-success my-2" >
+                      <a href="<?php echo base_url(); ?>welcome/logout" class="log-out-right"> 
+                        <p class="navbar-text  text-success my-2 nav-link-hover" >
                           Logout  <i class="fa fa-arrow-right" aria-hidden="true"></i>
                       </p>
                     </a>
                     </span>
                   <?php } else{?>
-                       <span class="ml-5 log-out-hide">
-                      <a href="<?php echo base_url(); ?>register#signup"> <p class="navbar-text  text-success my-2" >
+                       <span class="log-out-width">
+                      <a href="<?php echo base_url(); ?>register#signup" class="log-out-right"> <p class="navbar-text  text-success my-2 nav-link-hover" >
                           Login/Register  <i class="fa fa-arrow-right" aria-hidden="true"></i>
                       </p></a>
                      </span>
@@ -43,3 +39,7 @@
                   </div>
                 </nav>
       <!-- End Navbar -->
+
+
+
+  
