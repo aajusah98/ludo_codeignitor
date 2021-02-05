@@ -34,7 +34,7 @@ public function add_money_wallet($money,$id)
 		public function get_tranHistory($id)
 		{
 		
-		$this->db->select('ORDERID,TXNID,TXNAMOUNT,PAYMENTMODE,TXNDATE,STATUS');
+		$this->db->select('ORDERID,TXNID,TXNAMOUNT,PAYMENTMODE,TXNDATE,STATUS,payment_type');
 		$this->db->from('user_transaction_history');
 		$this->db->where('userId', $id);
 		return $this->db->get()->result_array();

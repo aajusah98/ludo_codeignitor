@@ -9,7 +9,7 @@
    <?php $this->load->view('cdn_links'); ?>
 <!-- custom css -->
 
-<link rel="stylesheet" href="<?php echo base_url();?>assets/css/loginstyle.css">
+<link rel="stylesheet" href="<?php echo base_url();?>assets/customCss/loginstyle.css">
 </head>
 <body>
 

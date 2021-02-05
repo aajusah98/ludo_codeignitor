@@ -9,6 +9,7 @@ class Welcome extends CI_Controller {
 	$this->load->database();
 	$this->load->helper('url');
 	$this->load->library('encdec_paytm');
+	$this->load->helper('date');
 
 	}
 
@@ -53,7 +54,6 @@ class Welcome extends CI_Controller {
 						'password'=>$psw,
 						'refferal'=>$refferal
 						);			
-
 					if($psw==$cpwd){
 						$this->db->select('*');
 						$this->db->from('players');
@@ -70,7 +70,13 @@ class Welcome extends CI_Controller {
 							$insertId = $this->db->insert_id();
 							// $que1=$this->db->query("select * from company where email='".$e."' and password ='".$p."'");
 							// $result = $que1->row_array();
-							
+							$insertActivity=array(
+					    		'player_id'=>$insertId,
+					    		'last_activity'=>strtotime("now")+10
+					    	);
+					    	$this->db->insert('players_login_deatils',$insertActivity);
+					    	$login_id = $this->db->insert_id();
+					    	$this->session->set_userdata('login_id',$login_id);
 							$this->session->set_flashdata('success_msg', 'Your account created successfully');
 							$this->session->set_userdata('isUserLogin',TRUE);
 				            $this->session->set_userdata('whatsapp',$whatsapp);
@@ -150,6 +156,14 @@ class Welcome extends CI_Controller {
 					    $this->session->set_userdata('whatsapp',$whatsapp);
 					    $this->session->set_userdata('username',$result['user_name']);
 					    $this->session->set_userdata('userinsertId',$result['uid']);
+
+					    	$insertActivity=array(
+					    		'player_id'=>$result['uid'],
+					    		'last_activity'=>strtotime("now")+10
+					    	);
+					    	$this->db->insert('players_login_deatils',$insertActivity);
+					    	$login_id = $this->db->insert_id();
+					    	$this->session->set_userdata('login_id',$login_id);
 
 			             redirect('welcome/userprofile/'.$this->session->userdata('userinsertId')); 
 						}
@@ -336,7 +350,7 @@ class Welcome extends CI_Controller {
 
 							if (isset($_POST) && count($_POST)>0 )
 							{ 
-								$transaction=array('userId'=>$this->session->userdata('userinsertId'));
+								$transaction=array('userId'=>$this->session->userdata('userinsertId'),'payment_type'=>"Added To Wallet");
 								foreach($_POST as $paramName => $paramValue) {
 									$transaction[$paramName]=$paramValue;
 										echo "<br/>" . $paramName . " = " . $paramValue;
@@ -506,7 +520,7 @@ class Welcome extends CI_Controller {
         		$data=array();
         		$data['transaction']=$this->Players_model->get_tranHistory($this->session->userdata('userinsertId'));
 
-        		$this->load->view('trabsaction_history',$data);
+        		$this->load->view('transaction_history',$data);
         		
         	}
 
@@ -726,6 +740,19 @@ public function cancleMatchRequest()
 			}
 		}
 
+
+/**
+        ===========================================================
+        Operation   :   accept match reuest
+                    -----------------------------------------------
+        Input       :   
+                    -----------------------------------------------
+        Return      : update status
+        ===========================================================
+    **/ 
+
+
+
 public function AcceptMatch()
 {
 	
@@ -763,6 +790,20 @@ public function AcceptMatch()
 
 }
 
+
+
+/**
+        ===========================================================
+        Operation   :   reject match reuest
+                    -----------------------------------------------
+        Input       :   
+                    -----------------------------------------------
+        Return      : update status
+        ===========================================================
+    **/ 
+
+
+
 public function RejectMatch()
 {
 if (!empty($this->input->post('M_id'))) {
@@ -784,6 +825,89 @@ if (!empty($this->input->post('M_id'))) {
 			}
 
 }
+
+
+/**
+        ===========================================================
+        Operation   :   match details
+                    -----------------------------------------------
+        Input       :   
+                    -----------------------------------------------
+        Return      : update status
+        ===========================================================
+    **/ 
+
+
+
+public function matchDetails($mid)
+{
+
+
+// echo $mid;
+$this->load->view('ludo_details');
+
+
+}
+
+/**
+        ===========================================================
+        Operation   :   update user activity in every 3 sec
+                    -----------------------------------------------
+        Input       :   
+                    -----------------------------------------------
+        Return      : update time
+        ===========================================================
+    **/ 
+
+
+public function update_user_activity() {
+
+	if(isset($_POST["action"])) {
+		 if($_POST["action"] == "update_time") {
+		 	$updateData=array(
+		 	'last_activity'  => $current_timestamp = strtotime("now")+10,
+		    'login_details_id' => $this->session->userdata('login_id')
+		 	);
+		 	$this->db->where('login_details_id',$this->session->userdata('login_id'));
+		 	$this->db->update('players_login_deatils',$updateData);
+		}
+	 }
+
+
+}
+
+
+/**
+        ===========================================================
+        Operation   :   fetch online users
+                    -----------------------------------------------
+        Input       :   
+                    -----------------------------------------------
+        Return      : number of user active
+        ===========================================================
+    **/ 
+
+			public function fetch_user_login_data() {
+				
+				if($_POST["update"]) {
+				 	if ($_POST['update']=='fetch_data') {
+						$current_timestamp = strtotime("now");
+				 		$this->db->select('*');
+				 		$this->db->from('players_login_deatils');
+				 	   	$this->db->where("last_activity > $current_timestamp", NULL, FALSE);
+					    $activeUser = $this->db->get()->num_rows();
+					    print_r($activeUser);
+						}
+					}
+			}
+
+
+public function termCondition(){
+			
+	$this->load->view('term_condition');
+	}			
+
+
 
 
 }

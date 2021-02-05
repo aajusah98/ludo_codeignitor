@@ -27,27 +27,25 @@
 		 				<hr class="bg-success mb-4 mt-0 d-inline-block mx-auto" style="width: 125px; height: 2px">
 		 				</a>
 		 			</div>
-		 			<div class="col-md-3 mx-auto mb-4 about_us">
+		 			<!-- <div class="col-md-3 mx-auto mb-4 about_us">
 		 				<a href="#">
 		 				<h6 class="text-uppercase font-weight-bold">About Us</h6>
-		 				<hr class="bg-success mb-4 mt-0 d-inline-block mx-auto" style="width: 125px; height: 2px">
-		 				<!-- <p class="mt-2">Ajay Sah, Email:- ajaysah531gmail.com</p> -->
-		 				<ul class="list-unstyled">
+		 				<hr class="bg-success mb-4 mt-0 d-inline-block mx-auto" style="width: 125px; height: 2px"> -->
+		 				<!-- <p class="mt-2"></p> -->
+		 				<!-- <ul class="list-unstyled">
 		 					<p>About Company</p>
 		 				</ul>
 		 				</a>
-		 			</div>
+		 			</div> -->
 		 			<div class="col-md-3 mx-auto mb-4 contact">
 		 				<h6 class="text-uppercase font-weight-bold">Contact</h6>
 		 				<hr class="bg-success mb-4 mt-0 d-inline-block mx-auto" style="width: 80px; height: 2px">
 		 				<ul class="list-unstyled">
-		 					<li class="my-2"><i class="fas fa-home mr-3"></i>  <span>Jaipur, Rajasthan</span>  </li>
-		 					<li class="my-2"><i class="fas fa-phone mr-3"></i> <span> +91 7568954816</span> </li>
-		 					<li class="my-2"><i class="fas fa-envelope-square mr-3"></i> <span>mnjha82828@gmail.com</span></li>
+		 					<li class="my-2"><i class="fas fa-phone mr-3"></i> <span> +91 9660923040</span> </li>
 		 				</ul>
 		 			</div>
 		 			<div class="col-md-3 mx-auto mb-4">
-		 				<a href="#">
+		 				<a href="<?php echo base_url();?>welcome/termCondition">
 		 				<h6 class="text-uppercase font-weight-bold terms">Terms & Conditions</h6>
 		 				<hr class="bg-success mb-4 mt-0 d-inline-block mx-auto" style="width: 200px; height: 2px">
 		 				</a>

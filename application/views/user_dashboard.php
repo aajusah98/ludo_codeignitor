@@ -7,10 +7,7 @@
 	 <!--  cdn link -->
    <?php $this->load->view('cdn_links'); ?>
 	
-
-<!-- dasboard custm style sheet -->
-<link rel="stylesheet" href="<?php echo base_url();?>assets/customCss/dashboardCustom.css">
-
+  
 </head>
 
 <body class="cover-background">

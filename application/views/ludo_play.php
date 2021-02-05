@@ -26,8 +26,8 @@
         <div>
             <div class="balance-width">  
 
-                 <p class="text-success">Total Online Users : <span class="text-white"> 
- </span> Users 
+                 <p class="text-success">Total Online Users : <span  id="online_users_box"class="text-white"> 
+ </span> User
    </p>
                  <p class="text-success">Availiable Balance : <span class="text-white" id="availiableBalance"><?php echo $users['money_wallet'];  ?></span></p>
             </div>
@@ -87,7 +87,7 @@
             <!-- End Content -->
 
     </div>
-  <script src="<?php echo base_url(); ?>assets/js/jquery-3.5.1.js"></script>
+    <script src="<?php echo base_url();?>assets/dataTable/jquery_3_5_1.js"></script>
    <script>
       
         const playingGame = {isPlaying:false};
@@ -118,6 +118,7 @@
 
   function addMatch($user_id){
   	  let betAmount = $("#numberInput").val();
+      if (availiableBalance >0) {
   	  var user_id=$user_id;
         $.ajax({
             url: "<?php echo base_url().'welcome/addMatch' ?>",
@@ -128,6 +129,8 @@
             	window.match_id=data.match_id;
             	}	
         });
+    }
+
     }
 
 
@@ -328,8 +331,8 @@ function setmatchDynamicData() {
                       <div style="letter-spacing: 1.5px;" id="sibling-<?php echo $key['M_id'];?>"><?php print_r(getUserName($key['Match_SetBy']));?> Vs <?php print_r(getUserName($key['play_requested_By']));?> of Rs.<span id="rs-<?php echo $key['M_id'];?>"><?php echo $key['Bet_Amount'] ?></span></div>
 
                        <div class="bg-danger p-2 rounded-right text-white play-style">
-                                    <button class="bg-danger"  id="clickCancelled-<?php echo $key['M_id'];?>" onclick="RejectMatch(this.id,<?php echo $key['M_id'];?>)" style="width:100%; border:none" >MatchDetails
-                                    </button>
+                                    <a href="<?php echo base_url();?>/welcome/matchDetails/<?php echo $key['M_id'];?>" type="button" class="bg-danger" style="width:100%; border:none" >MatchDetails
+                                    </a>
                                </div>
 
 
@@ -388,8 +391,8 @@ function getmatchDynamicData() {
 
 
                              <div class="bg-danger p-2 rounded-right text-white play-style">
-                                    <button class="bg-danger" id="cancelbtn-<?php echo $mats['M_id'];?>" onclick="cancleMatchRequest(<?php echo $mats['M_id'];?>,<?php echo $users['uid'];  ?>,<?php echo $mats['Bet_Amount'];?>,this.id)" style="width:100%; border:none" >MatchDetails
-                                    </button>
+                                     <a href="<?php echo base_url();?>welcome/matchDetails/<?php echo $mats['M_id'];?>" type="button" class="bg-danger" style="width:100%; border:none" >MatchDetails
+                                    </a>
                                </div>
 
                        
@@ -411,6 +414,8 @@ function getmatchDynamicData() {
                <?php }}}?>  
               `);
 }
+
+
 setmatchDynamicData();
 getmatchDynamicData();
 
@@ -476,6 +481,52 @@ setMatch.addEventListener('click',disableEditing);
 
  </script>
 
+
+<script>
+$(document).ready(function(){
+<?php
+if($_SESSION["isUserLogin"])
+{
+?>
+function update_user_activity()
+{
+ var action = 'update_time';
+ $.ajax({
+  url:"<?php echo base_url().'welcome/update_user_activity' ?>",
+  method:"POST",
+  data:{action:action},
+  success:function(data)
+  {
+
+  }
+ });
+}
+function fetch_user_login_data()
+{
+ var update = "fetch_data";
+ $.ajax({
+  url:"<?php echo base_url().'welcome/fetch_user_login_data' ?>",
+  method:"POST",
+  data:{update:update},
+  success:function(data)
+  {
+   $('#online_users_box').html(data);
+  }
+ });
+}
+setInterval(function(){ 
+ update_user_activity();
+}, 3000);
+
+fetch_user_login_data();
+setInterval(function(){
+ fetch_user_login_data();
+}, 3000);
+
+
+<?php } ?>
+});
+</script>
 
 
 
