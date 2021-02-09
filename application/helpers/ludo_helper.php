@@ -128,6 +128,43 @@ if(!function_exists('getUserName'))
 }
 
 
+/**
+ * This function used to getUserNumber Be passing Id.
+ * @param {array} view data.
+ */
+if(!function_exists('getUserNumber'))
+{
+    function getUserNumber($user_id)
+    {
+        $CI =& get_instance();
+        $CI->db->select('whatsapp_num');
+        $CI->db->from('players');
+        $CI->db->where('uid', $user_id);
+        $user=$CI->db->get()->result_array();
+        return $user[0]['whatsapp_num'];
+    }
+}
+
+
+/**
+ * This function used to getUserNumber Be passing Id.
+ * @param {array} view data.
+ */
+if(!function_exists('getRoomId'))
+{
+    function getRoomId($Match_id)
+    {
+        $CI =& get_instance();
+        $CI->db->select('room_ID,roomId_update_flag');
+        $CI->db->from('room_ids');
+        $CI->db->where('match_id', $Match_id);
+        $user=$CI->db->get()->result_array();
+        return $user;
+    }
+}
+
+
+
 
 /**
  * This function used to add_money_wallet of user by taking there id.
@@ -178,22 +215,62 @@ if(!function_exists('sub_money_wallet'))
     }
 
 
-// /**
-//  * This function used to get all requested matches by user
-//  * @param {array} view data.
-//  */
-// if(!function_exists('requested_matches'))
-// {
-//     function requested_matches($Play_request_by )
-//     {
-//         $CI =& get_instance();
-//         $CI->db->select('*');
-//         $CI->db->from('play_matche_details');
-//         $CI->db->where('Play_request_by', $Play_request_by);   
-//         return $CI->db->get()->result_array();   
-//     }
+/**
+ * This function used to get match result accouding to usedid and mid
+ * @param {array} view data.
+ */
+if(!function_exists('getMatcheResultAccUser'))
+{
+    function getMatcheResultAccUser($mid,$Uid)
+    {
+        $CI =& get_instance();
+        $whereCondition=array(
+        'match_id'=>$mid,
+        'Result_updated_by'=>$Uid
+        );
 
-// }
+        $CI->db->select('*');
+         $CI->db->from('match_result');
+         $CI->db->where($whereCondition);
+         return $CI->db->get()->row_array(); 
+    }
+
+}
+
+
+
+/**
+ * This function used to get match result accouding to usedid and mid
+ * @param {array} view data.
+ */
+if(!function_exists('comission'))
+{
+    function comission($money)
+    {
+
+        $betAmount=$money;
+        if ($betAmount<250) {
+            $comission1=$betAmount*0.1;
+            $creditBlance=($betAmount-$comission1)+$betAmount;
+            return $creditBlance;
+        }
+        else if ($betAmount>250 && $betAmount<500 ) {
+        
+            $comission2=25;
+            $creditBlance=($betAmount-$comission2)+$betAmount;
+             return $creditBlance;
+        }
+
+        else if ($betAmount>500 ) {
+              $comission3=$betAmount*0.05;
+             $creditBlance=($betAmount-$comission3)+$betAmount;
+             return $creditBlance;
+        }
+    }
+
+}
+
+
 
 
 // /**
@@ -243,5 +320,12 @@ if(!function_exists('sub_money_wallet'))
 //     }
 
 // }
+
+
+
+
+
+
+
 
 }

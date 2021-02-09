@@ -5,6 +5,7 @@
  <!--  <meta http-equiv="refresh" content="10"> -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="<?php echo base_url();?>assets/customCss/dashboardCustom.css">
+
 <meta http-equiv="refresh" content="5" /> 
 
  <!--  cdn link -->
@@ -111,145 +112,10 @@
         value = isNaN(value) ? 0 : value;
         value+=50;
         inputVal.value = value;
-}
+  }
 
 
-// adding balance to to database using ajax
-
-  function addMatch($user_id){
-  	  let betAmount = $("#numberInput").val();
-      if (availiableBalance >0) {
-  	  var user_id=$user_id;
-        $.ajax({
-            url: "<?php echo base_url().'welcome/addMatch' ?>",
-            method: "POST",
-            data: { user_id:user_id, betAmount:betAmount },
-            async: false,
-            success:function(data) {
-            	window.match_id=data.match_id;
-            	}	
-        });
-    }
-
-    }
-
-
-
-  // this fumction add the matches request for playing request with help of ajax
-
-    function sendMatchRequest(Match_SetBy,reqst_SentBy,Bet_Amount,M_id,btnid) {
-    
-        clickfiveSec=true;
-
-        if (clickfiveSec){
-      document.getElementById(btnid).disabled = true;
-    }
-      setTimeout(function(){
-        document.getElementById(btnid).disabled = false;
-        clickfiveSec = false;
-      },5000);
-
-        const currentTotalBalance = parseInt(availiableBalance.textContent);
-        if (currentTotalBalance>=Bet_Amount) {
-
-         $.ajax({
-            url: "<?php echo base_url().'welcome/sendMatchRequest' ?>",
-            method: "POST",
-            data: { Match_SetBy:Match_SetBy, reqst_SentBy:reqst_SentBy,Bet_Amount:Bet_Amount,M_id:M_id },
-            async: false,
-            success:function(data) {
-              
-              } 
-        });
-      }
-      else{
-        // If not sufficient balance throw error
-      errorMsg_text_content.textContent ="You donot have sufficient balance. Please Recharge Your Wallet";
-
-      errorMsg.classList.remove("hide-errorMsg");
-
-      setTimeout(function(){errorMsg.classList.add("hide-errorMsg")},3000);
-      
-      }
-
-
-    }
-
-
-  function AcceptMatch(btnId,M_id) {
-      
-       clickfiveSec=true;
-
-        if (clickfiveSec){
-      document.getElementById(btnId).disabled = true;
-    }
-      setTimeout(function(){
-        document.getElementById(btnId).disabled = false;
-        clickfiveSec = false;
-      },5000);
-
-         $.ajax({
-            url: "<?php echo base_url().'welcome/AcceptMatch' ?>",
-            method: "POST",
-            data: { M_id:M_id },
-            async: false,
-            success:function(data) {
-              
-              } 
-        });
-
-
-    }
-
-  function RejectMatch(btnId,M_id) {
-        clickfiveSec=true;
-
-        if (clickfiveSec){
-      document.getElementById(btnId).disabled = true;
-    }
-      setTimeout(function(){
-        document.getElementById(btnId).disabled = false;
-        clickfiveSec = false;
-      },5000);
-
-         $.ajax({
-            url: "<?php echo base_url().'welcome/RejectMatch' ?>",
-            method: "POST",
-            data: { M_id:M_id },
-            async: false,
-            success:function(data) {
-              
-              } 
-        });
-      
-      }    
-
-function cancleMatchRequest(M_id,reqst_SentBy,Bet_Amount,canbtn) {
-
- clickfiveSec=true;
-
-        if (clickfiveSec){
-      document.getElementById(canbtn).disabled = true;
-    }
-      setTimeout(function(){
-        document.getElementById(canbtn).disabled = false;
-        clickfiveSec = false;
-      },5000);
-
-     $.ajax({
-            url: "<?php echo base_url().'welcome/cancleMatchRequest' ?>",
-            method: "POST",
-            data: { M_id:M_id, reqst_SentBy:reqst_SentBy,Bet_Amount:Bet_Amount},
-            async: false,
-            success:function(data) {
-              
-              } 
-        });
-
-}
-
-
-
+  
 function decreaseValue() {
   let value = parseInt(inputVal.value);
   value = isNaN(value) ? 0 : value;
@@ -264,39 +130,6 @@ setTimeout(function(){errorMsg.classList.add("hide-errorMsg")},3000)
   inputVal.value = value;
 }
 
-function removeCancelled(id,mid){
-  // on clicking cancel button , it removes the content
-  clickfiveSec=true;
-
-        if (clickfiveSec){
-      document.getElementById(id).disabled = true;
-    }
-      setTimeout(function(){
-        document.getElementById(id).disabled = false;
-        clickfiveSec = false;
-      },5000);
-    let parent = document.getElementById(id).parentNode;
-    parent.parentNode.parentNode.remove();
-
-  // after cancelling resetting the total walletBalance
-    const cancelledBalance = parseInt( parent.parentNode.children[0].childNodes[1].textContent);
-    const currentTotalBalance = parseInt(availiableBalance.textContent);
-    availiableBalance.textContent = cancelledBalance + currentTotalBalance;
-    // cancleMatch(cancelledBalance,parent);
-    
-
-
-        $.ajax({
-            url: "<?php echo base_url().'welcome/cancleMatch' ?>",
-            method: "POST",
-            data: { cancleMoney:cancelledBalance, match_id:id,Match_Set_By:mid },
-            async: false,
-            success:function(data) {
-            	// console.log(data);
-            }
-        });
-   
-}
 
 
 
@@ -331,7 +164,7 @@ function setmatchDynamicData() {
                       <div style="letter-spacing: 1.5px;" id="sibling-<?php echo $key['M_id'];?>"><?php print_r(getUserName($key['Match_SetBy']));?> Vs <?php print_r(getUserName($key['play_requested_By']));?> of Rs.<span id="rs-<?php echo $key['M_id'];?>"><?php echo $key['Bet_Amount'] ?></span></div>
 
                        <div class="bg-danger p-2 rounded-right text-white play-style">
-                                    <a href="<?php echo base_url();?>/welcome/matchDetails/<?php echo $key['M_id'];?>" type="button" class="bg-danger" style="width:100%; border:none" >MatchDetails
+                                    <a href="<?php echo base_url();?>welcome/matchDetails/<?php echo $key['M_id'];?>" type="button" class="bg-danger" style="width:100%; border:none" >MatchDetails
                                     </a>
                                </div>
 
@@ -467,10 +300,185 @@ function disableEditing () {
   }
 
 
+
+
   
    
 }
 }
+
+
+  function addMatch($user_id){
+
+
+      let betAmount = $("#numberInput").val();
+
+      if (parseInt(availiableBalance.textContent)>0) {
+        var user_id=$user_id;
+          $.ajax({
+            url: "<?php echo base_url().'welcome/addMatch' ?>",
+            method: "POST",
+            data: { user_id:user_id, betAmount:betAmount },
+            async: false,
+            success:function(data) {
+              window.match_id=data.match_id;
+              } 
+        });
+     }
+
+   }
+
+
+// this fumction add the matches request for playing request with help of ajax
+
+    function sendMatchRequest(Match_SetBy,reqst_SentBy,Bet_Amount,M_id,btnid) {
+    
+        clickfiveSec=true;
+
+        if (clickfiveSec){
+      document.getElementById(btnid).disabled = true;
+    }
+      setTimeout(function(){
+        document.getElementById(btnid).disabled = false;
+        clickfiveSec = false;
+      },5000);
+
+        
+        if (parseInt(availiableBalance.textContent)>=Bet_Amount) {
+
+         $.ajax({
+            url: "<?php echo base_url().'welcome/sendMatchRequest' ?>",
+            method: "POST",
+            data: { Match_SetBy:Match_SetBy, reqst_SentBy:reqst_SentBy,Bet_Amount:Bet_Amount,M_id:M_id },
+            async: false,
+            success:function(data) {
+              
+              } 
+        });
+      }
+      else{
+        // If not sufficient balance throw error
+      errorMsg_text_content.textContent ="You donot have sufficient balance. Please Recharge Your Wallet";
+
+      errorMsg.classList.remove("hide-errorMsg");
+
+      setTimeout(function(){errorMsg.classList.add("hide-errorMsg")},3000);
+      
+      }
+
+
+    }
+
+
+  function AcceptMatch(btnId,M_id) {
+      
+       clickfiveSec=true;
+
+        if (clickfiveSec){
+      document.getElementById(btnId).disabled = true;
+    }
+      setTimeout(function(){
+        document.getElementById(btnId).disabled = false;
+        clickfiveSec = false;
+      },5000);
+
+         $.ajax({
+            url: "<?php echo base_url().'welcome/AcceptMatch' ?>",
+            method: "POST",
+            data: { M_id:M_id },
+            async: false,
+            success:function(data) {
+              
+              } 
+        });
+
+
+    }
+
+  function RejectMatch(btnId,M_id) {
+        clickfiveSec=true;
+
+        if (clickfiveSec){
+      document.getElementById(btnId).disabled = true;
+    }
+      setTimeout(function(){
+        document.getElementById(btnId).disabled = false;
+        clickfiveSec = false;
+      },5000);
+
+         $.ajax({
+            url: "<?php echo base_url().'welcome/RejectMatch' ?>",
+            method: "POST",
+            data: { M_id:M_id },
+            async: false,
+            success:function(data) {
+              
+              } 
+        });
+      
+      }    
+
+function cancleMatchRequest(M_id,reqst_SentBy,Bet_Amount,canbtn) {
+
+ clickfiveSec=true;
+
+        if (clickfiveSec){
+      document.getElementById(canbtn).disabled = true;
+    }
+      setTimeout(function(){
+        document.getElementById(canbtn).disabled = false;
+        clickfiveSec = false;
+      },5000);
+
+     $.ajax({
+            url: "<?php echo base_url().'welcome/cancleMatchRequest' ?>",
+            method: "POST",
+            data: { M_id:M_id, reqst_SentBy:reqst_SentBy,Bet_Amount:Bet_Amount},
+            async: false,
+            success:function(data) {
+              
+              } 
+        });
+
+}
+
+
+function removeCancelled(id,mid){
+  // on clicking cancel button , it removes the content
+  clickfiveSec=true;
+
+        if (clickfiveSec){
+      document.getElementById(id).disabled = true;
+    }
+      setTimeout(function(){
+        document.getElementById(id).disabled = false;
+        clickfiveSec = false;
+      },5000);
+    let parent = document.getElementById(id).parentNode;
+    parent.parentNode.parentNode.remove();
+
+  // after cancelling resetting the total walletBalance
+    const cancelledBalance = parseInt( parent.parentNode.children[0].childNodes[1].textContent);
+    const currentTotalBalance = parseInt(availiableBalance.textContent);
+    availiableBalance.textContent = cancelledBalance + currentTotalBalance;
+    // cancleMatch(cancelledBalance,parent);
+    
+
+
+        $.ajax({
+            url: "<?php echo base_url().'welcome/cancleMatch' ?>",
+            method: "POST",
+            data: { cancleMoney:cancelledBalance, match_id:id,Match_Set_By:mid },
+            async: false,
+            success:function(data) {
+              // console.log(data);
+            }
+        });
+   
+}
+
+
+
 increase.addEventListener('click',increaseValue);
 decrease.addEventListener('click',decreaseValue);
 setMatch.addEventListener('click',disableEditing);

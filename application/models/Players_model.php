@@ -5,8 +5,7 @@ class Players_model extends CI_Model{
 
 
 
-public function user_profile($id="")
-{
+public function user_profile($id) {
 	    $this->db->select('*');
         $this->db->from('players');
         $this->db->where('uid', $id );
@@ -51,17 +50,35 @@ public function set_match_details($uid)
      return $this->db->get()->result_array();
 }
 
-	
-public function all_match_details()
+		
+	public function all_match_details() {
+		 $this->db->select('*');
+	     $this->db->from('match_details');
+	     return $this->db->get()->result_array();
+	}
+
+
+	public function getMatche($mid) {
+		 $this->db->select('*');
+	     $this->db->from('match_details');
+	     $this->db->where('M_id',$mid);
+	     return $this->db->get()->row_array();
+	}
+
+public function getMatcheResult($mid,$Uid)
 {
-	 $this->db->select('*');
-     $this->db->from('match_details');
-     return $this->db->get()->result_array();
+	$whereCondition=array(
+		'match_id'=>$mid,
+		'Result_updated_by'=>$Uid
+		);
+
+		$this->db->select('*');
+	     $this->db->from('match_result');
+	     $this->db->where($whereCondition);
+	     return $this->db->get()->row_array();
 }
 
-
-
-    }
+   }
 
 
 
