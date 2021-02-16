@@ -217,12 +217,7 @@
               <p class="text-success">Playing Matches</p>
           </div>
        </div>
-       <div class="card text-center bg-secondary mb-2 game-detail-content-width">
-        <div class="card-body bg-info">
-            <h3 class="card-text text-white">0</h3>
-            <p class="text-warning">Cancel Matches</p>
-        </div>
-     </div>
+       
           </div>
         </div>
           </div>
@@ -240,6 +235,7 @@
      let cash_withdrawl = document.getElementById("cash-withdrawl");
      let modal_content = document.getElementById("modal-content");
      let withdrawl_submit = document.getElementById("withdrawl-submit");
+
      if(parseInt(wallet_balance)<50){
        modal_content.innerHTML = "<p>Not Sufficient Balance</p>";
 
@@ -257,7 +253,7 @@
   <div class="form-group row">
     <label for="number" class="col-sm-3 col-form-label">Amount :</label>
     <div class="col-sm-7">
-      <input type="number" class="form-control" id="amount" placeholder="Enter Amount" required/>
+      <input type="number" class="form-control" onKeyPress="enteredAmountKeyPress(this.id)" onKeyUp="enteredAmountKeyPress(this.id)" id="amount" placeholder="Enter Amount" required/>
       <div class="invalid-feedback">
         Please provide a valid city.
       </div>
@@ -271,6 +267,20 @@
   </form>`;
      
      }
+
+    
+
+     function enteredAmountKeyPress(id)
+    {
+        let enteredAmount = document.getElementById(id).value;
+       if(parseInt(wallet_balance)<parseInt(enteredAmount)){
+        //  alert("Please Enter Appropriate Balance");
+         modal_content.innerHTML = "<p>Not Sufficient Balance</p>";
+         setTimeout(function(){  location.reload();}, 2000);
+         
+       }
+
+    }
 
    </script>
 </body>

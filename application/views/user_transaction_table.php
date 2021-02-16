@@ -32,12 +32,12 @@
 <!-- Links -->
 <ul class="navbar-nav w-100">
   <li class="nav-item text-justify">
-    <a class="nav-link" href="user_transaction_table">User Transaction Table</a>
+    <a class="nav-link" href="admin_dashboard">User Transaction Table</a>
   </li>
   <li class="nav-item text-justify">
     <a class="nav-link" href="transaction_table">Transaction Table</a>
   </li>
-  <li class="nav-item  text-justify">
+  <li class="nav-item text-justify">
     <a class="nav-link" href="#">Link 3</a>
   </li>
 </ul>

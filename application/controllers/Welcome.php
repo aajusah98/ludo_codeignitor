@@ -915,6 +915,14 @@ public function admin_login(){
 			$this->load->view('admin_dashboard');
 			}	
 
+			public function user_transaction_table(){	
+				$this->load->view('user_transaction_table');
+				}	
+
+				public function transaction_table(){	
+					$this->load->view('transaction_table');
+					}	
+
 
 
 }
