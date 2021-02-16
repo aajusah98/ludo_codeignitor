@@ -6,6 +6,12 @@
 	<title>LudoBattles</title>
 	 <!--  cdn link -->
    <?php $this->load->view('cdn_links'); ?>
+
+   <style>
+     .not-show-anything{
+       display: none;
+     }
+   </style>
 	
   
 </head>
@@ -59,18 +65,42 @@
            <div class="card text-center bg-secondary content-width mb-2"  >
             <div class="card-body">
               <a href="#">
-                <h3 class="card-text text-white">Rs.<span><?php echo $users['money_wallet'];  ?></span></h3>
+                <h3 class="card-text text-white">Rs.<span id="wallet"><?php echo $users['money_wallet'];  ?></span></h3>
                <a href="<?php echo base_url();?>welcome/paytmCheckOutPage"><h6 class="text-warning"><i class="fa fa-plus" >  </i><span class="font-weight-bold"> Add Balance</span></h6></a> 
               </a>
             </div>
          </div>
 
-             <div class="card text-center bg-secondary content-width mb-2"  >
+             <div class="card text-center bg-secondary content-width mb-2" style="cursor: pointer !important;"  >
               <div class="card-body">
                   <h3 class="card-text text-white">Rs. 0</h3>
-                  <h6 class="text-warning font-weight-bold"><i class="fa fa-reply" aria-hidden="true"></i>
-                    Cash Withdrawl</h6>
+                  <h6 class="text-warning font-weight-bold">
+                   <button class="bg-secondary text-warning" id="cash-withdrawl" data-toggle="modal" data-target="#exampleModal"> <i class="fa fa-reply" aria-hidden="true"></i> Cash Withdrawl</button></h6>
               </div>
+              <!--Withdrawl Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Cash Withdrawl Details</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" >
+        <div id="modal-content" class="text-danger">
+
+        </div>
+        
+      </div>
+      <!-- <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary not-show-anything" id="withdrawl-submit">Submit</button>
+      </div> -->
+    </div>
+  </div>
+</div>
+<!-- Endmodal -->
            </div>
             </div>
           </div>
@@ -187,12 +217,7 @@
               <p class="text-success">Playing Matches</p>
           </div>
        </div>
-       <div class="card text-center bg-secondary mb-2 game-detail-content-width">
-        <div class="card-body bg-info">
-            <h3 class="card-text text-white">0</h3>
-            <p class="text-warning">Cancel Matches</p>
-        </div>
-     </div>
+       
           </div>
         </div>
           </div>
@@ -205,5 +230,58 @@
   <!-- footer -->
  <?php $this->load->view('footer'); ?>
    </div>
+   <script>
+     let wallet_balance = document.getElementById("wallet").textContent;
+     let cash_withdrawl = document.getElementById("cash-withdrawl");
+     let modal_content = document.getElementById("modal-content");
+     let withdrawl_submit = document.getElementById("withdrawl-submit");
+
+     if(parseInt(wallet_balance)<50){
+       modal_content.innerHTML = "<p>Not Sufficient Balance</p>";
+
+      //  cash_withdrawl.disabled = true;
+     }else{
+      modal_content.classList.remove("text-danger");
+      // withdrawl_submit.classList.remove("not-show-anything");
+      modal_content.innerHTML = `<form>
+  <div class="form-group row">
+    <label for="number" class="col-sm-3 col-form-label">Mobile :</label>
+    <div class="col-sm-7">
+      <input type="number" class="form-control" id="number" placeholder="Enter Mobile number/Upi Id" required/>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="number" class="col-sm-3 col-form-label">Amount :</label>
+    <div class="col-sm-7">
+      <input type="number" class="form-control" onKeyPress="enteredAmountKeyPress(this.id)" onKeyUp="enteredAmountKeyPress(this.id)" id="amount" placeholder="Enter Amount" required/>
+      <div class="invalid-feedback">
+        Please provide a valid city.
+      </div>
+    </div>
+  </div>
+  
+  <input type='text' name='userId' placeholder='UserId' value="2554122" hidden required/>
+  <input type='text' name='orderId' placeholder='orderId' value="25544122" hidden required/>
+  <button type="submit" class="btn btn-primary " id="withdrawl-submit">Submit</button>
+
+  </form>`;
+     
+     }
+
+    
+
+     function enteredAmountKeyPress(id)
+    {
+        let enteredAmount = document.getElementById(id).value;
+       if(parseInt(wallet_balance)<parseInt(enteredAmount)){
+        //  alert("Please Enter Appropriate Balance");
+         modal_content.innerHTML = "<p>Not Sufficient Balance</p>";
+         setTimeout(function(){  location.reload();}, 2000);
+         
+       }
+
+    }
+
+   </script>
 </body>
 </html>

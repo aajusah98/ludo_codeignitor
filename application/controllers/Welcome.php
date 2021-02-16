@@ -654,13 +654,13 @@ public function cancleMatch()
 				//  1--->bethasbeenset
 				//  0->bet chancled
 
-    				// $insertMatch=array(
-    				// 'Match_Set_By'=>$Match_SetBy,
-    				// 'Play_request_by'=>$reqst_SentBy,
-    				// 'Bet_Amt'=>$Bet_Amount,
-    				// 'Match_id'=>$M_id,
-    				// 'status'=>1
-    				// 	);
+    				$insertMatch=array(
+    				'Match_Set_By'=>$Match_SetBy,
+    				'Play_request_by'=>$reqst_SentBy,
+    				'Bet_Amt'=>$Bet_Amount,
+    				'Match_id'=>$M_id,
+    				'status'=>1
+    					);
 
     				$updatMatchTable=array(
     					'match_requested'=>1,
@@ -670,17 +670,20 @@ public function cancleMatch()
     				$whereCodtion=array(
 								'M_id'=>$M_id
 							);
-			
-					$this->db->where($whereCodtion);
-		 			$this->db->update('match_details',$updatMatchTable);
-    				sub_money_wallet($Bet_Amount,$reqst_SentBy);
+						
+    						$insert=$this->db->insert('play_matche_details',$insertMatch);
+    						sub_money_wallet($Bet_Amount,$reqst_SentBy);
 
+    			if ($insert) {
     				$result=array(
 							"status" => 'Match is Updated',
 							"msg" => 'Playing Request has been sent'
 							);
+    					$this->db->where($whereCodtion);
+		 				$this->db->update('match_details',$updatMatchTable);
     					header('Content-Type: application/json');
 						return print_r( json_encode($result) );
+    			}
 
     		}
         		
@@ -805,15 +808,11 @@ public function RejectMatch()
 {
 if (!empty($this->input->post('M_id'))) {
 			 $M_id = $this->input->post('M_id');
-				$this->db->select('*');
-				$this->db->from('match_details');
-				$this->db->where('M_id',$M_id);
-				$res=$this->db->get()->row_array();
-				$play_requested_By=$res['play_requested_By'];
-				$betAmount=$res['Bet_Amount'];	
+				
 				$whereCodtion=array(
 								'M_id '=>$M_id
 							);
+
 				$updateStatus=array(
     						'match_accept_status'=>0,
     						'play_requested_By'=>0,
@@ -823,7 +822,6 @@ if (!empty($this->input->post('M_id'))) {
 
 						$this->db->where($whereCodtion);
 		 				$this->db->update('match_details',$updateStatus);
-		 				add_money_wallet($betAmount, $play_requested_By);
 			}
 
 }
@@ -841,12 +839,13 @@ if (!empty($this->input->post('M_id'))) {
 
 
 
-public function matchDetails($mid){
-		$this->auth_login();
-		$data=array();
-		$data['match']=$this->Players_model->getMatche($mid);
-		$data['match_result']=$this->Players_model->getMatcheResult($mid,$this->session->userdata('userinsertId'));
-		$this->load->view('ludo_details',$data);
+public function matchDetails($mid)
+{
+
+
+// echo $mid;
+$this->load->view('ludo_details');
+
 
 }
 
@@ -906,546 +905,24 @@ public function update_user_activity() {
 public function termCondition(){
 			
 	$this->load->view('term_condition');
-	}			
+	}		
 
-public function setRoomId()
-{
-
-	if ($this->input->post('room_id')) {
-		$room_id=$this->input->post('room_id');
-		$Room_Creadted_By=$this->input->post('setBy');
-		$match_id=$this->input->post('match_id');
-		$this->db->select('*');
-		$this->db->from('room_ids');
-		$this->db->where('match_id',$match_id);
-		$result=$this->db->get()->result_array();
-
-		if ($result) {
-			$updatetRoomId=array(
- 				'room_ID'=>$room_id,
- 				'Room_created_By'=>$Room_Creadted_By,
- 				'match_id'=>$match_id,
- 				'roomId_update_flag'=>1
-			);
-			$this->db->where('match_id',$match_id);
-			$update=$this->db->update('room_ids',$updatetRoomId);
-
-			if ($update) {
-				$result=array(
-							"status"=>'update',
-							"msg" => 'Room Id Is Updated Wait Till Opponent'
-							);
-    					header('Content-Type: application/json');
-						return print_r(json_encode($result));
-			}
-		}
-		else{
-			$insertRoomId=array(
- 				'room_ID'=>$room_id,
- 				'Room_created_By'=>$Room_Creadted_By,
- 				'match_id'=>$match_id
-			);
-
-			$insert=$this->db->insert('room_ids',$insertRoomId);
-
-			if ($insert) {
-
-				$updatePlayingMatch=array(
-					'play_status'=>1
-				);
-				$this->db->where('M_id',$match_id);
-				$this->db->update('match_details',$updatePlayingMatch);
-				
-				$result=array(
-							"status"=>'insert',
-							"msg" => 'Room Id Is Created Wait Till Opponent'
-							);
-    					header('Content-Type: application/json');
-						return print_r(json_encode($result));
-				
-				$updatePlayingMatch=array(
-					'play_status'=>1
-				);
-				$this->db->where('M_id',$match_id);
-				$this->db->update('match_details',$updatePlayingMatch);	
-
-			}
-
-
-		}
-			
+public function admin_login(){	
+		$this->load->view('admin_login');
+		}	
 		
-	}
-}
+		public function admin_dashboard(){	
+			$this->load->view('admin_dashboard');
+			}	
 
+			public function user_transaction_table(){	
+				$this->load->view('user_transaction_table');
+				}	
 
-public function CancelSetMatch()
-{
-	if ($this->input->post('cancel_reason')) {
-			$cancel_reason=$this->input->post('cancel_reason');
-			$Result_updated_by=$this->input->post('Result_updated_by');
-			$match_id=$this->input->post('match_id');
-			
-			$insertRoomId=array(
- 				'Result_updated_by'=>$Result_updated_by,
- 				'match_id'=>$match_id,
- 				'cancle_status'=>'Cancle',
- 				'cancle_reason'=>$cancel_reason,
- 				'result_status'=>1
+				public function transaction_table(){	
+					$this->load->view('transaction_table');
+					}	
 
-			);
-
-			$insert=$this->db->insert('match_result',$insertRoomId);
-			if ($insert) {
-				$result=array(
-							"result_status"=>1,
-							"msg" => 'Result Is Updated'
-							);
-    					header('Content-Type: application/json');
-						return print_r(json_encode($result));
-			}
-
-		}
-
-}
-
-public function lossMatchUpdate()
-{
-	if ($this->input->post('Result_updated_by')) {
-
-			$Result_updated_by=$this->input->post('Result_updated_by');
-			$match_id=$this->input->post('match_id');
-			
-			$insertRoomId=array(
- 				'Loss_Status'=>'I Loss',
- 				'Result_updated_by'=>$Result_updated_by,
- 				'match_id'=>$match_id,
- 				'result_status'=>1
-
-			);
-
-			$insert=$this->db->insert('match_result',$insertRoomId);
-			if ($insert) {
-				$result=array(
-							"result_status"=>1,
-							"msg" => 'Result Is Updated'
-							);
-    					header('Content-Type: application/json');
-						return print_r(json_encode($result));
-			}
-
-		}
-	}
-
-
-
-
-   function winMatchUpdate()  
-      {  
-
-      	if ($this->input->post('match_id')) {
-      	
-           if(isset($_FILES["image_file"]["name"]))   {  
-                $config['upload_path'] = './uploads/';  
-                $config['allowed_types'] = 'jpg|jpeg|png|gif'; 
-                 $new_name = time() . "screenShot"; 
-                 $config['file_name'] = $new_name;
-                $this->load->library('upload', $config); 
-                $this->upload->initialize($config); 
-
-                if($this->upload->do_upload('image_file'))  {  
-          			$uploadData = $this->upload->data();
-         			 $myfile = $uploadData['file_name'];
-         			 $data['file_name'] = $myfile;
-       			 } else {
-          			$myfile = '';
-        					}
-             	}  
-		      else {
-		        $myfile = '';
-		      	}
-		              
-           	$match_id=$this->input->post('match_id');
-           	$Result_updated_by=$this->input->post('Result_updated_by');
-
-           	$insertRoomId=array(
- 				'win_status'=>'I Win',
- 				'Result_updated_by'=>$Result_updated_by,
- 				'match_id'=>$match_id,
- 				'screenshot_link'=>$myfile,
- 				'result_status'=>1
-			);
-
-			$insert=$this->db->insert('match_result',$insertRoomId);
-			if ($insert) {
-				$result=array(
-							"result_status"=>1,
-							"msg" => 'Result Is Updated'
-							);
-    					header('Content-Type: application/json');
-						return print_r(json_encode($result));
-			}
-
-           	
-           }  
-      }
-
-
-	public function checkResultUpdate() {
-
-		if ($this->input->post('Match_SetBy')) {
-			$Match_SetBy=$this->input->post('Match_SetBy');
-			$play_requested_By=$this->input->post('play_requested_By');
-			$match_id=$this->input->post('match_id');
-			$loginUserId=$this->input->post('loginUserId');
-			
-			$seterResult=getMatcheResultAccUser($match_id,$Match_SetBy); 
-			$playerResult=getMatcheResultAccUser($match_id,$play_requested_By);
-			$match=$this->Players_model->getMatche($match_id);
-
-		if (!empty($seterResult)&&!empty($playerResult)) {
-
-						$updatedValue=array(
-					'result_of_match'=>1,
-					'play_status'=>2
-					);		
-					$this->db->where('M_id',$match_id);
-					$this->db->update('match_details',$updatedValue);
-
-					if ($seterResult['cancle_status']!=NULL&&$playerResult['cancle_status']!=NULL) {
-							
-							if ($loginUserId==$Match_SetBy) {
-								add_money_wallet($match['Bet_Amount'],$Match_SetBy);
-
-								$updateFlag=array(
-									'paymet_check_flag'=>1
-								);
-
-								$whereCodtion=array(
-									'match_id'=>$match_id,
-									'Result_updated_by'=>$Match_SetBy
-								);
-
-								$this->db->where($whereCodtion);
-								$this->db->update('match_result',$updateFlag);
-
-								$result=array(
-								"result_status"=>'cancle_match',
-								"msg" => 'Match Has Been Cancled'.'Your Wallet Is Credited By Rs'.' '. $match['Bet_Amount']
-								);
-	    					header('Content-Type: application/json');
-							return print_r(json_encode($result));
-							}
-							if ($loginUserId==$play_requested_By) {
-
-								add_money_wallet($match['Bet_Amount'],$play_requested_By);
-								$updateFlag=array(
-									'paymet_check_flag'=>1
-								);
-
-								$whereCodtion=array(
-									'match_id'=>$match_id,
-									'Result_updated_by'=>$play_requested_By
-								);
-
-								$this->db->where($whereCodtion);
-								$this->db->update('match_result',$updateFlag);
-
-									$result=array(
-								"result_status"=>'cancle_match',
-								"msg" => 'Match Has Been Cancled'.'Your Wallet Is Credited By Rs'.' '. $match['Bet_Amount']
-								);
-	    					header('Content-Type: application/json');
-							return print_r(json_encode($result));
-
-							}
-							
-						}
-
-
-
-					if ($seterResult['win_status']!=NULL&&$playerResult['win_status']!=NULL) {
-								$updateFlag=array(
-									'fault_result_flag'=>1
-								);
-
-								$whereCodtion=array(
-									'match_id'=>$match_id,
-									'Result_updated_by'=>$play_requested_By
-								);
-
-								$this->db->where($whereCodtion);
-								$this->db->update('match_result',$updateFlag);
-
-
-								$whereCodtion2MatchSeter=array(
-									'match_id'=>$match_id,
-									'Result_updated_by'=>$Match_SetBy
-								);
-
-								$this->db->where($whereCodtion2MatchSeter);
-								$this->db->update('match_result',$updateFlag);	
-
-
-							$result=array(
-								"result_status"=>'win_win',
-								"msg" => 'The Result is updated Win By Both Party Which Is Conflict Result Both Party Money Has been On Hold And Penality Will be Rs 50 Contact Admin For Solve Conflict'
-								);
-	    					header('Content-Type: application/json');
-							return print_r(json_encode($result));
-							
-							}
-
-
-
-							if ($seterResult['Loss_Status']!=NULL&&$playerResult['Loss_Status']!=NULL) {
-
-									$updateFlag=array(
-										'fault_result_flag'=>1
-									);
-
-									$whereCodtion=array(
-										'match_id'=>$match_id,
-										'Result_updated_by'=>$play_requested_By
-									);
-
-									$this->db->where($whereCodtion);
-									$this->db->update('match_result',$updateFlag);
-
-
-									$whereCodtion2MatchSeter=array(
-										'match_id'=>$match_id,
-										'Result_updated_by'=>$Match_SetBy
-									);
-
-									$this->db->where($whereCodtion2MatchSeter);
-									$this->db->update('match_result',$updateFlag);	
-
-
-								$result=array(
-									"result_status"=>'loss_loss',
-									"msg" => 'The Result is updated Loss By Both Party Which Is Conflict Result Both Party Money Has been On Hold And Penality Will be Rs 50 Contact Admin For Solve Conflict'
-									);
-		    					header('Content-Type: application/json');
-								return print_r(json_encode($result));
-								
-							}
-
-
-
-						if (($seterResult['win_status']!=NULL&&$playerResult['cancle_status']!=NULL) || ($seterResult['cancle_status']!=NULL&&$playerResult['win_status']!=NULL)) {
-
-								$updateFlag=array(
-										'fault_result_flag'=>1
-									);
-
-									$whereCodtion=array(
-										'match_id'=>$match_id,
-										'Result_updated_by'=>$play_requested_By
-									);
-
-									$this->db->where($whereCodtion);
-									$this->db->update('match_result',$updateFlag);
-
-
-									$whereCodtion2MatchSeter=array(
-										'match_id'=>$match_id,
-										'Result_updated_by'=>$Match_SetBy
-									);
-
-									$this->db->where($whereCodtion2MatchSeter);
-									$this->db->update('match_result',$updateFlag);	
-
-
-								$result=array(
-									"result_status"=>'win_cancle',
-									"msg" => 'The Result is updated Win And Cancle Which Is Conflict Result Both Party Money Has been On Hold And Penality Will be Rs 50 Contact Admin For Solve Conflict'
-									);
-		    					header('Content-Type: application/json');
-								return print_r(json_encode($result));
-
-							}
-				
-						if (($seterResult['Loss_Status']!=NULL&&$playerResult['cancle_status']!=NULL) || ($seterResult['cancle_status']!=NULL&&$playerResult['Loss_Status']!=NULL)) {
-						
-								$updateFlag=array(
-											'fault_result_flag'=>1
-										);
-
-										$whereCodtion=array(
-											'match_id'=>$match_id,
-											'Result_updated_by'=>$play_requested_By
-										);
-
-										$this->db->where($whereCodtion);
-										$this->db->update('match_result',$updateFlag);
-
-
-										$whereCodtion2MatchSeter=array(
-											'match_id'=>$match_id,
-											'Result_updated_by'=>$Match_SetBy
-										);
-
-										$this->db->where($whereCodtion2MatchSeter);
-										$this->db->update('match_result',$updateFlag);	
-
-
-									$result=array(
-										"result_status"=>'loss_cancle',
-										"msg" => 'The Result is updated Loss And Cancle Which Is Conflict Result Both Party Money Has been On Hold And Penality Will be Rs 50 Contact Admin For Solve Conflict'
-										);
-			    					header('Content-Type: application/json');
-									return print_r(json_encode($result));
-
-								}
-
-							if (($seterResult['Loss_Status']!=NULL&&$playerResult['win_status']!=NULL) || ($seterResult['win_status']!=NULL&&$playerResult['Loss_Status']!=NULL)) {
-
-								if ($play_requested_By==$loginUserId) {
-								
-									if ($playerResult['Loss_Status']=='I Loss') {
-
-										$updateFlag=array(
-												'paymet_check_flag'=>1
-											);
-
-											$whereCodtion=array(
-												'match_id'=>$match_id,
-												'Result_updated_by'=>$play_requested_By
-											);
-
-											$this->db->where($whereCodtion);
-											$this->db->update('match_result',$updateFlag);
-										
-										$result=array(
-											"result_status"=>'loss_match',
-											"msg" => 'Sorry But You Loss the Match!! Better Luck Next Time'.'You Loss bet of Rs'.' '.$match['Bet_Amount'],
-											'Play_request_by'=>$play_requested_By
-											);
-				    					header('Content-Type: application/json');
-										return print_r(json_encode($result));
-									}
-
-									if ($playerResult['win_status']=='I Win') {
-
-									$winAmount=comission($match['Bet_Amount']);
-									add_money_wallet($winAmount,$play_requested_By);
-
-									$updateFlag=array(
-											'paymet_check_flag'=>1
-										);
-
-										$whereCodtion=array(
-											'match_id'=>$match_id,
-											'Result_updated_by'=>$play_requested_By
-										);
-
-										$this->db->where($whereCodtion);
-										$this->db->update('match_result',$updateFlag);
-
-
-									
-									$result=array(
-										"result_status"=>'win_match',
-										"msg" => 'Hurray  You Won the Match !!'.'You Won of Rs'.' '.$winAmount,
-										'Play_request_by'=>$play_requested_By
-										);
-			    					header('Content-Type: application/json');
-									return print_r(json_encode($result));
-								}
-
-
-
-							}
-
-							if ($Match_SetBy==$loginUserId) {
-							
-
-								if ($seterResult['Loss_Status']=='I Loss') {
-
-									$updateFlag=array(
-											'paymet_check_flag'=>1
-										);
-
-										$whereCodtion=array(
-											'match_id'=>$match_id,
-											'Result_updated_by'=>$Match_SetBy
-										);
-
-										$this->db->where($whereCodtion);
-										$this->db->update('match_result',$updateFlag);
-									
-									$result=array(
-										"result_status"=>'loss_match',
-										"msg" => 'Sorry But You Loss the Match!! Better Luck Next Time'.'You Loss bet of Rs'.' '.$match['Bet_Amount'],
-											'Match_SetBy'=>$Match_SetBy
-										);
-			    					header('Content-Type: application/json');
-									return print_r(json_encode($result));
-								}
-
-
-									if ($seterResult['win_status']=='I Win') {
-
-									$winAmount=comission($match['Bet_Amount']);
-									add_money_wallet($winAmount,$Match_SetBy);
-
-									$updateFlag=array(
-											'paymet_check_flag'=>1
-										);
-
-										$whereCodtion=array(
-											'match_id'=>$match_id,
-											'Result_updated_by'=>$Match_SetBy
-										);
-
-										$this->db->where($whereCodtion);
-										$this->db->update('match_result',$updateFlag);
-
-
-									
-									$result=array(
-										"result_status"=>'win_match',
-										"msg" => 'Hurray  You Won the Match !!'.'You Won of Rs'.' '.$winAmount,
-										'Match_SetBy'=>$Match_SetBy
-										);
-			    					header('Content-Type: application/json');
-									return print_r(json_encode($result));
-								}
-
-
-							}
-
-								
-
-
-							}
-				
-			// update that result of match is recived and removed OutCome Button
-					
-				
-
-			}
-
-			else{
-				$result=array(
-							"result_status"=>'result_not',
-							"msg" => 'Wait Until Opponent Updated The Result !! Check Again After Few Minute'
-							);
-    					header('Content-Type: application/json');
-						return print_r(json_encode($result));
-			}
-
-
-			
-		}
-
-	
-		
-		
-
-		}
-		
 
 
 }
