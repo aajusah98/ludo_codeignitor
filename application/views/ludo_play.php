@@ -5,9 +5,10 @@
  <!--  <meta http-equiv="refresh" content="10"> -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="<?php echo base_url();?>assets/customCss/dashboardCustom.css">
-
 <meta http-equiv="refresh" content="5" /> 
 
+<!-- <meta http-equiv="refresh" content="5" /> 
+ -->
  <!--  cdn link -->
  <!-- <script src="http://localhost/ludo/assets/js/jquery-3.5.1.js"></script> -->
    <?php $this->load->view('cdn_links'); ?>
@@ -116,6 +117,8 @@
 
             <!-- End Content -->
 
+  <!-- footer -->
+ 
     </div>
     <script src="<?php echo base_url();?>assets/dataTable/jquery_3_5_1.js"></script>
    <script>
@@ -562,11 +565,10 @@ setInterval(function(){
 });
 </script>
 
-
-
-  <!-- footer -->
- <?php $this->load->view('footer'); ?>
-
+<div style="position: absolute; width: 100%; bottom: 0;">
+<?php $this->load->view('footer'); ?>
+</div>
+</div>
 </body>
 
 </html>

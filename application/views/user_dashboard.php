@@ -193,20 +193,20 @@
             </div>
           <div class="card-body  flex" >
             
-            <div class="card text-center bg-secondary  mb-2 game-detail-content-width">
+            <div class="card text-center bg-secondary  mb-2 game-detail-content-width mr-3">
               <div class="card-body bg-white" >
                   <h3 class="card-text text-success">  <?php  echo totalMatchPlayed($users['uid']); ?> </h3>
                   <p  class="text-dark">Total Matches Played</p>
               </div>
            </div>
 
-           <div class="card text-center bg-secondary  mb-2 game-detail-content-width">
+           <div class="card text-center bg-secondary  mb-2 game-detail-content-width mr-3">
             <div class="card-body bg-success">
                 <h3 class="card-text text-white"> <?php  echo totalWin($users['uid']); ?> </h3>
                 <p class="text-warning">Total Win</p>
             </div>
          </div>
-         <div class="card text-center bg-secondary mb-2  game-detail-content-width">
+         <div class="card text-center bg-secondary mb-2  game-detail-content-width mr-3">
           <div class="card-body bg-secondary">
               <h3 class="card-text text-white"> <?php  echo totalLoss($users['uid']); ?></h3>
               <p class="text-warning">Total Loss</p>
@@ -214,28 +214,28 @@
        </div>
 
 
-           <div class="card text-center bg-secondary mb-2  game-detail-content-width">
+           <div class="card text-center bg-secondary mb-2  game-detail-content-width mr-3">
             <div class="card-body bg-primary">
                 <h3 class="card-text text-white" id="online_users_box"> </h3>
                 <p class="text-warning">Online Users</p>
             </div>
          </div>
-         <div class="card text-center bg-secondary  mb-2 game-detail-content-width">
+         <div class="card text-center bg-secondary  mb-2 game-detail-content-width mr-3">
           <div class="card-body bg-warning">
               <h3 class="card-text text-dark"><?php echo enCryptData($users['uid']);  ?></h3>
               <p class="text-success">Your Referal Code</p>
           </div>
        </div>
-       <div class="card text-center bg-secondary mb-2 game-detail-content-width">
+       <div class="card text-center bg-secondary mb-2 game-detail-content-width mr-3">
         <div class="card-body bg-info">
             <h3 class="card-text text-white"><?php  echo cancleMatch($users['uid']); ?></h3>
             <p class="text-warning">Cancel Matches</p>
         </div>
      </div>
 
-  <div class="card text-center bg-secondary mb-2 game-detail-content-width">
+  <div class="card text-center bg-secondary mb-2 game-detail-content-width mr-3">
     <a href="<?php echo base_url(); ?>welcome/referalEarning">
-          <div class="card-body bg-info">
+          <div class="card-body">
               <h3 class="card-text text-white">Click Me</h3>
               <p class="text-warning">Referal Earning</p>
           </div>

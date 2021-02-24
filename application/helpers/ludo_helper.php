@@ -58,7 +58,7 @@ function send_mails($to,$subject,$message,$headers,$cc='',$bcc='',$filetoattach=
     $CI = get_instance();
     try{
 
-        if (MAIL_METHOD == 'server1') {
+        if (MAIL_METHOD == 'server') {
             $headers .= "MIME-Version: 1.0\r\n";
             $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
             $sendmail = mail($to, $subject, $message, $headers);

@@ -1527,7 +1527,7 @@ public function update_user_activity() {
 
 $result=array(
 				"result_status"=>'win_match',
-				"msg" => 'Hurray  You Won the Match !!'.'You Won of Rs'.' '.$winAmount.'  '.' Do You Know Your Rferred Partner Earned Rs ' .$referralAmount . ' '. ' You Can Also Earn By refered' ,
+				"msg" => 'Hurray  You Won the Match !!'.'You Won of Rs'.' '.$winAmount.'  '.' Do You Know Your Referred Partner Earned Rs ' .$referralAmount . ' '. ' You Can Also Earn By refered' ,
 				'Play_request_by'=>$play_requested_By
 				);
 	    					header('Content-Type: application/json');
