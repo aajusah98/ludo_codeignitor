@@ -19,12 +19,12 @@
                       
                       <a href="<?php echo base_url(); ?>welcome/userprofile/<?php echo $this->session->userdata('userinsertId'); ?>" class="log-out-right"> 
                         <p class="navbar-text  text-success my-2 nav-link-hover" >
-                        <i class="fa fa-user" aria-hidden="true"></i> <span style="margin-right:0px; "> <?php echo $this->session->userdata('username');  ?>  </span>
+                        <i class="fa fa-user" aria-hidden="true"></i> <span style="margin-right:10px; "> Profile </span>
                       </p>
                     </a>
 
                       <a href="<?php echo base_url(); ?>welcome/logout" class="log-out-right"> 
-                        <p class="navbar-text  text-success my-2 nav-link-hover" >
+                        <p class="navbar-text  text-success my-2 nav-link-hover" style="float: right;" >
                           Logout  <i class="fa fa-arrow-right" aria-hidden="true"></i>
                       </p>
                     </a>

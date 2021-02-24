@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 25.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!-- Generator: Adobe Illustrator 25.2.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 300 150" style="enable-background:new 0 0 300 150;" xml:space="preserve">
 <style type="text/css">
@@ -23,7 +23,7 @@
 	.st17{font-size:18.2437px;}
 	.st18{font-family:'ForteMT';}
 	.st19{font-size:24.8863px;}
-	.st20{fill:#18001E;}
+	.st20{fill:#F9F9F9;}
 	.st21{font-family:'BritannicBold';}
 	.st22{font-size:11.569px;}
 	.st23{font-size:20.1875px;}
@@ -109,6 +109,7 @@
 	.st103{filter:url(#Adobe_OpacityMaskFilter_9_);}
 	.st104{clip-path:url(#SVGID_40_);fill:url(#SVGID_73_);}
 	.st105{clip-path:url(#SVGID_40_);mask:url(#SVGID_72_);fill:#FFA38A;}
+	.st106{fill:none;}
 </style>
 <path class="st0" d="M65.96,84.55l-16.4-20.16c2.13-2.02,3.05-5.14,2.09-8.12c-1.33-4.13-5.76-6.4-9.89-5.07
 	c-4.13,1.33-6.4,5.76-5.07,9.89c0.96,2.98,3.53,4.98,6.44,5.37L41.58,92.4c-0.03,0.07-0.03,0.14-0.01,0.2
@@ -747,8 +748,8 @@ ADD1iDj+fzewAAAAAElFTkSuQmCC" transform="matrix(0.24 0 0 0.24 -3.12 39.84)">
 <circle class="st14" cx="229.64" cy="57.93" r="15.3"/>
 <circle class="st15" cx="261.81" cy="57.93" r="15.3"/>
 <text transform="matrix(1.502 0 0 1 160.2427 63.6644)" class="st16 st17">L</text>
-<text transform="matrix(1.1011 0 0 1 162.2425 101.099)" class="st18 st19">BATTLES</text>
-<text transform="matrix(1.347 0 0 1 165.2985 124.7078)" class="st20 st21 st22">Play and Earn</text>
+<text transform="matrix(1.1011 0 0 1 158.8512 104.0106)" class="st7 st18 st19">BATTLES</text>
+<text transform="matrix(1.347 0 0 1 146.5159 124.8112)" class="st20 st21 st22">PLAY - WIN - EARN!</text>
 <text transform="matrix(1.502 0 0 1 186.6372 65.4683)" class="st16 st23">U</text>
 <text transform="matrix(1.502 0 0 1 218.3697 65.4681)" class="st16 st24">D</text>
 <text transform="matrix(1.2338 0 0 1 250.1804 66.0638)" class="st16 st25">O</text>
@@ -2786,4 +2787,5 @@ MWqIuv4GAAAAAElFTkSuQmCC" transform="matrix(0.24 0 0 0.24 80.4 20.4)">
 		</g>
 	</g>
 </g>
+<rect x="148.57" y="93.48" class="st106" width="119.48" height="0.78"/>
 </svg>

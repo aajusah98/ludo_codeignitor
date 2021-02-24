@@ -71,6 +71,7 @@ table, th, td {
     Label the data
     You could also use a data-* attribute and content for this. That way "bloats" the HTML, this way means you need to keep HTML and CSS in sync. Lea Verou has a clever way to handle with text-shadow.
     */
+    td:nth-of-type(1):before { content: "SN"; }
     td:nth-of-type(1):before { content: "Payment Type"; }
     td:nth-of-type(2):before { content: "Payment Mode"; }
     td:nth-of-type(3):before { content: "Amount"; }
@@ -82,23 +83,24 @@ table, th, td {
   }
 </style>
 
-<body>
+
+<body class="cover-background">
 
 
 
  <!-- nav bar -->
-  <?php $this->load->view('navigation'); ?>
+<?php $this->load->view('navigation'); ?>
 
-<!-- partial:index.partial.html -->
+
 <div class="container">
-  <div class="row">
- <div class="col-md-12 text-center text-info" style="margin-top: 2%;"><h1>Transaction History</h1></div>
- <div class="col-md-12" style="margin-bottom: 3%;">
-  <div class="table-responsive">
-      <table class="table table-striped table-bordered table-responsive" id="trans_table" style="width:100%" cellpadding="0">
-        <thead class="" >
-          <tr>
-            <th>Payment Type</th>
+
+  <div class="table-responsive text-white" style="margin-top: 40px">
+    <h1 class="text-white text-center">Transaction History</h1>
+       <table class="table table-striped table-bordered text-white" id="trans_table" style="width: 100%;">
+  <thead>
+    <tr>  
+          <th>SN</th>
+           <th>Payment Type</th>
             <th>Payment Mode</th>
             <th>Amount</th>
             <th>Date</th>
@@ -106,9 +108,13 @@ table, th, td {
             <th>ORDERID</th>
             <th>Status</th>
             </thead>
-          <tbody>
-          <?php foreach ($transaction as $key) {?>
+             </tr>
+  </thead>
+    <tbody>
+         
+         <?php $count=1; foreach ($transaction as $key) {?>
           <tr>
+             <td><?php echo $count;   ?></td>
             <td><?php echo $key['payment_type'];  ?></td>
             <td><?php echo $key['PAYMENTMODE'];  ?></td>
             <td><?php echo $key['TXNAMOUNT'];  ?></td>
@@ -118,15 +124,16 @@ table, th, td {
             <td><?php echo $key['STATUS'];  ?></td>
           </tr>
 
-          <?php } ?>
+          <?php  $count=$count+1; } ?>
+
+
+    
+
         </tbody>
-      </table>   
-  </div>
-</div>
+</table>
 
-  </div>
 </div>
-
+</div>
 
 
 

@@ -19,7 +19,7 @@
  <!-- nav bar -->
 <?php $this->load->view('navigation'); ?>
 
-
+ 
       <!-- Start Content -->
     <div class="padding-large margin-top">
       
@@ -27,10 +27,9 @@
         <div>
             <div class="balance-width">  
 
-                 <p class="text-success">Total Online Users : <span  id="online_users_box"class="text-white"> 
- </span> User
+                 <p class="text-success">Total Online Users : <span  id="online_users_box"class="text-white"> </span> User
    </p>
-                 <p class="text-success">Availiable Balance : <span class="text-white" id="availiableBalance"><?php echo $users['money_wallet'];  ?></span></p>
+                 <p class="text-success">Available Balance : <span class="text-white" id="availiableBalance"><?php echo $users['money_wallet'];  ?></span></p>
             </div>
             <div class="input-group mb-3">
                 <div class="input-group-append" id="decrease" >
@@ -83,8 +82,38 @@
               </div> -->
         </div>
       </div>
+
+
+
     </div>
+
+  <div class="row">
+
+    <div class="col-md-12">
+      
+      <?php  foreach ($allMatches as $matches) { ?>
+
+      <?php  if ($matches['play_status']==1 && $matches['match_accept_status']==1) {?>
+          <div class="card mb-3">
+              <div class="card-body card-body-style bg-default" id="second" >
+        <div style="letter-spacing: 1.5px;" id="sibling-<?php echo $matches['M_id'];?>"><?php print_r(getUserName($matches['Match_SetBy']));?> Vs <?php print_r(getUserName($matches['play_requested_By']));?> of Rs.<span id="rs-<?php echo $matches['M_id'];?>"><?php echo $matches['Bet_Amount'] ?></span></div>
+
+                       <div class="bg-secondary p-2 rounded-right text-warning font-weight-bold cyan-lighter-hover play-style">
+                                    <i class="far fa-play"> Playing </i>
+                               </div>
+                         </div>
+                         </div>      
+        <?php } }?>
+
+
+    </div>
+    
+  </div>
+
 </div>
+
+
+
             <!-- End Content -->
 
     </div>
@@ -141,7 +170,7 @@ function setmatchDynamicData() {
     set_match_container.insertAdjacentHTML(
     'afterbegin',`
                       <?php  if(!empty($setMatches)){foreach ($setMatches as $key) {
-                        if ($key['Match_Status']==1 || $key['match_accept_status']==1){?>
+                        if (($key['Match_Status']==1 || $key['match_accept_status']==1) && $key['result_of_match']==0){?>
                   <div class="card mb-3" id="remove-cancelled-<?php echo $key['M_id'];?>">
                   <div class="card-body card-body-style" id="second" >
                   
@@ -175,7 +204,7 @@ function setmatchDynamicData() {
                   <?php 
                     if ($users['uid']==$key['Match_SetBy']){?>
                             <div class="bg-danger p-2 rounded-right text-white play-style">
-                                    <button class="bg-danger"  id="clickCancelled-<?php echo $key['M_id'];?>" onclick="removeCancelled(this.id,<?php echo $key['Match_SetBy'];?>)" style="width:100%; border:none" >Cancle
+                                    <button class="bg-danger"  id="clickCancelled-<?php echo $key['M_id'];?>" onclick="removeCancelled(this.id,<?php echo $key['Match_SetBy'];?>)" style="width:100%; border:none" >cancel
                                     </button>
                                </div>
                              
@@ -197,14 +226,11 @@ function setmatchDynamicData() {
 function getmatchDynamicData() {
     
   
-
     content.insertAdjacentHTML(
     'afterbegin',`
-                      <?php if(!empty($allMatches)){foreach ($allMatches as $mats) {if ($mats['Match_Status']==1 && $users['uid']!=$mats['Match_SetBy'] && (
+                      <?php if(!empty($allMatches)){foreach ($allMatches as $mats) {if ($mats['Match_Status']==1 && $users['uid']!=$mats['Match_SetBy'] && $mats['result_of_match']==0 && (
 
-                        ($mats['match_requested']==1 && $mats['play_requested_By']==$users['uid']) || ($mats['match_requested']==2 && $mats['play_requested_By']==$users['uid']) || ($mats['match_requested']==0 && $mats['play_requested_By']==0) 
-
-                    )  ){?>
+                        ($mats['match_requested']==1 && $mats['play_requested_By']==$users['uid']) || ($mats['match_requested']==2 && $mats['play_requested_By']==$users['uid']) || ($mats['match_requested']==0 && $mats['play_requested_By']==0) )  ){?>
                   <div class="card mb-3" id="remove-cancelled-<?php echo $mats['M_id'];?>">
                   <div class="card-body card-body-style" id="second" >
                   
@@ -214,7 +240,7 @@ function getmatchDynamicData() {
 
 
                              <div class="bg-danger p-2 rounded-right text-white play-style">
-                                    <button class="bg-danger" id="cancelbtn-<?php echo $mats['M_id'];?>" onclick="cancleMatchRequest(<?php echo $mats['M_id'];?>,<?php echo $users['uid'];  ?>,<?php echo $mats['Bet_Amount'];?>,this.id)" style="width:100%; border:none" >Cancle
+                                    <button class="bg-danger" id="cancelbtn-<?php echo $mats['M_id'];?>" onclick="cancleMatchRequest(<?php echo $mats['M_id'];?>,<?php echo $users['uid'];  ?>,<?php echo $mats['Bet_Amount'];?>,this.id)" style="width:100%; border:none" >cancel
                                     </button>
                                </div>
                             

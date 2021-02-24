@@ -60,7 +60,7 @@
               (यदि मैच शुरू नहीं हुआ है और दोनों पक्ष खेलना नहीं चाहते हैं, तो ’रद्द करें’ विकल्प चुनें।)
               </p></li>
             <li><p>Posting a wrong result after the game will charge you a penalty of ₹50, and you can be blocked too.<br>
-              (खेल के बाद एक गलत परिणाम पोस्ट करने पर 100 ₹ का जुर्माना लगेगा, और आपको ब्लॉक भी किया जा सकता है।)
+              (खेल के बाद एक गलत परिणाम पोस्ट करने पर  ₹ 50 का जुर्माना लगेगा, और आपको ब्लॉक भी किया जा सकता है।)
               </p></li>
             <li><p>User must have to record every game, and if any player is hacking or cheating a game, contact support.<br>
               (प्लेयर को हर गेम रिकॉर्ड करना होगा, और यदि कोई खिलाड़ी किसी गेम को हैक या धोखा दे रहा है, तो सपोर्ट सिस्टम से संपर्क करें।)
@@ -104,10 +104,10 @@
           <!-- <hr class="bg-success mb-4 mt-0 d-inline-block"> -->
           <ul class="list-unstyled">
             <li><p>Challenge below ₹250, flat 10% commission will be charged on challenge amount.<br>
-              (250₹ से कम के चैलेंज पर, फ्लैट 15₹ कमीशन लिया जाएगा।)
+              (250₹ से कम के चैलेंज पर, फ्लैट 10% कमीशन लिया जाएगा।)
               </p></li>
             <li><p>The challenge between ₹250 to ₹500, flat ₹25 commission will be charged.<br>
-                (250₹ से, 500 के बीच के चैलेंज पर, फ्लैट 20₹ कमीशन लिया जाएगा।)
+                (250₹ से, 500 के बीच के चैलेंज पर, फ्लैट ₹25 कमीशन लिया जाएगा।)
               </p></li>
             <li><p>Challenge above ₹500, flat 5% commission will be charged on challenge amount.<br> 
               (500₹ से ऊपर के चैलेंज पर, फ्लैट 5% कमीशन लिया जाएगा।)

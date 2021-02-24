@@ -40,11 +40,6 @@
 <?php $this->load->view('navigation'); ?>
       <!-- Start Content -->
     <div class="padding-large margin-top">
-      <?php  
-  print_r($match);
-
-     
-       ?>
       <div class="container-fluid">
         <div class="row text-center" id="redirectButton" style="display: none;">
           <div class="col-md-12">
@@ -63,18 +58,26 @@
             </div>
           <div class="card-body">
             <div class="" id="room-id">
+               <div class="card-header text-info text-center">
+                  <p class="title-font-size">If you can not connect to the room ID please click on Get Room ID button.
+                    <br>If you Post the Wrong Result ₹50 Penalty will be charged. 
+                    <br>
+                  The balance will be on hold if you update the wrong result.</p>
+                </div>
               <?php if ($this->session->userdata('userinsertId')==$match['Match_SetBy']) { ?>
 
-                <div class="card-header text-info text-center">
+              <!--   <div class="card-header text-info text-center">
                   <p class="title-font-size">Opponent Whats App Number
                    <br><?php print_r(getUserNumber($match['play_requested_By']));?></p>
-                </div>
+                </div> -->
+
+               
 
                 <?php } else {  ?>
-                  <div class="card-header text-info text-center">
+                  <!-- <div class="card-header text-info text-center">
                   <p class="title-font-size">Opponent Whats App Number
                    <br><?php print_r(getUserNumber($match['Match_SetBy']));?></p>
-                </div>
+                </div> -->
 
                 <?php  } ?>
               <form id="room_form">
@@ -89,41 +92,41 @@
                 
                 <?php if ($this->session->userdata('userinsertId')==$match['Match_SetBy']) { ?>
                 <div class="text-center">
-                  <button class="btn btn-outline-secondary text-white" type="button" id="room-id-submit" onclick="onRoomIdSubmit(<?php echo $match['Match_SetBy'];?>,<?php echo $match['M_id'];?>)">SetRoomId</button>
-                  <button class="btn btn-outline-secondary text-white" type="button"  onclick="onRoomIdEdit()">EditRoomId</button>
+                  <button class="btn btn-outline-secondary text-white" type="button" id="room-id-submit" onclick="onRoomIdSubmit(<?php echo $match['Match_SetBy'];?>,<?php echo $match['M_id'];?>)">Set Room Id</button>
+                  <button class="btn btn-outline-secondary text-white" type="button"  onclick="onRoomIdEdit()">Edit Room Id</button>
                   </div>
                 <?php  }else{ ?>
                   <div class="text-center">
-                   <button class="btn btn-outline-secondary text-white" type="button" onclick="GetRoomId()">GetRoomId</button>
+                   <button class="btn btn-outline-secondary text-white" type="button" onclick="GetRoomId()">Get Room Id</button>
                    </div>
                 <?php } ?>
                  </form> 
                 
               </div>
               <div>
-                 <p class="justify text-warning text-weight-bold text-center mt-2 title-font-size"  id="information">You can not cancle match untill RoomId Set</p>
+                 <p class="justify text-warning text-weight-bold text-center mt-2 title-font-size"  id="information">You can not cancel match untill Room ID Set</p>
 
                   
                   <div id="match-cancel-reason" class="not-show-anything">
-                     <p class="text-center text-success title-font-size">Your Result Is Updated Please Wait Until Opponent Update Reslut </p>
+                     <p class="text-center text-success title-font-size">Your Result Is Updated Please Wait Until Opponent Update Result </p>
                       <h5 class="text-center text-warning">You have selected 
                         <span class="text-center text-info text-weight-bold">
                         <?php  if (!empty($match_result)) {
 
-                      if ($match_result['win_status']!=NUll || $match_result['Loss_Status']!=NUll || $match_result['cancle_status']!=NUll) {
+                      if ($match_result['win_status']!=NUll || $match_result['Loss_Status']!=NUll || $match_result['cancel_status']!=NUll) {
                         if ($match_result['win_status']!=NUll) {
                           echo $match_result['win_status'] ;
                         }
                         else if ($match_result['Loss_Status']!=NUll) {
                           echo $match_result['Loss_Status']; 
                         }
-                        else if ($match_result['cancle_status']!=NUll) {
+                        else if ($match_result['cancel_status']!=NUll) {
                           echo "<br>";
-                          echo $match_result['cancle_status'];
+                          echo $match_result['cancel_status'];
                              echo "<br>";
                              echo "<br>";
                           echo '<p class="text-center text-warning">Match Cancellation Reason</p>';
-                          echo $match_result['cancle_reason'];
+                          echo $match_result['cancel_reason'];
 
                         }
                       }
@@ -133,10 +136,10 @@
                     </h5>                  
                       
                       
-                      <p class="text-center text-white">Please Click Check <span class="text-weight-bold text-danger title-font-size"> Below OutCome Button </span>  To Get Final Result And Money</p>
+                      <p class="text-center text-white">Please Click Check <span class="text-weight-bold text-danger title-font-size"> Below Result Button </span>  To Get Final Result And Money</p>
 
                        <div class="text-center">
-                          <a  class="btn btn-primary" onclick="checkResult(<?php echo $match['Match_SetBy'];?>,<?php echo $match['play_requested_By'];?>,<?php echo $match['M_id'];?>,<?php echo $this->session->userdata('userinsertId'); ?>)" id="cancel-submit">OutCome</a>
+                          <a  class="btn btn-primary" onclick="checkResult(<?php echo $match['Match_SetBy'];?>,<?php echo $match['play_requested_By'];?>,<?php echo $match['M_id'];?>,<?php echo $this->session->userdata('userinsertId'); ?>)" id="cancel-submit">Result</a>
                           
                         </div>
 
@@ -166,7 +169,7 @@
                      
                       <div class="not-show-anything" id="winner-form">
                         
-  <!--                       <div class="container">
+  <!--            <div class="container">
     <form method="post" action="" enctype="multipart/form-data" id="myform">
         <div class='preview'>
             <img src="" id="img" width="100" height="100">
@@ -182,6 +185,7 @@
 
                  
            <form method="post" id="upload_form" align="center" enctype="multipart/form-data">  
+            <label for="exampleFormControlFile1">Upload Screenshot</label>
                 <input type="file" name="image_file" id="image_file" /> 
                 <input type="text" name="match_id" value="<?php echo $match['M_id'];?>" readonly hidden />
                 <input type="text" name="Result_updated_by" value="<?php echo $this->session->userdata('userinsertId'); ?>" readonly hidden />
@@ -555,7 +559,7 @@ function checkResult(Match_SetBy,play_requested_By,match_id,Uid) {
           window.location.reload();
     
         }
-        if (data.result_status=='cancle_match') {
+        if (data.result_status=='cancel_match') {
            alert(data.msg);
            window.location.reload();
         }
@@ -571,12 +575,12 @@ function checkResult(Match_SetBy,play_requested_By,match_id,Uid) {
 
           }
 
-        if (data.result_status=='loss_cancle') {
+        if (data.result_status=='loss_cancel') {
           alert(data.msg);
           window.location.reload();
         }
 
-        if (data.result_status=='win_cancle') {
+        if (data.result_status=='win_cancel') {
           alert(data.msg);
           window.location.reload();
         }

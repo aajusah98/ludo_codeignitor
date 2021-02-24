@@ -91,9 +91,9 @@ defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest auto
 
 defined('PAYTM_ENVIRONMENT')  OR define('PAYTM_ENVIRONMENT', 'TEST');
 
-defined('PAYTM_MERCHANT_KEY')  OR define('PAYTM_MERCHANT_KEY', 'KG!J@i2LMzDARLai'); //Change this constant's value with Merchant key received from Paytm.
+defined('PAYTM_MERCHANT_KEY')  OR define('PAYTM_MERCHANT_KEY', '6yWsyojKo_eZ!D!X'); //Change this constant's value with Merchant key received from Paytm.
 
-defined('PAYTM_MERCHANT_MID')  OR define('PAYTM_MERCHANT_MID', 'ecxSlF03766926949953'); //Change this constant's value with MID (Merchant ID) received from Paytm.
+defined('PAYTM_MERCHANT_MID')  OR define('PAYTM_MERCHANT_MID', 'JzFDZR81757624590956'); //Change this constant's value with MID (Merchant ID) received from Paytm.
 
 defined('PAYTM_MERCHANT_WEBSITE')  OR  define('PAYTM_MERCHANT_WEBSITE', 'WEBSTAGING'); //Change this constant's value with Website name received from Paytm.
 

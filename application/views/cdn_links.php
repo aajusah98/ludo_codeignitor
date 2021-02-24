@@ -8,7 +8,7 @@
 <link href='https://fonts.googleapis.com/css?family=Allerta Stencil' rel='stylesheet'>     
 
 
-<script src="<?php echo base_url();?>assets/dataTable/jquery_3_5_1.js"></script>
+<script src="<?php echo base_url();?>assets/dataTable/jquery.js"></script>
 
 <!-- Font Awesome  end-->
 

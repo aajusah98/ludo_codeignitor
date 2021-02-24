@@ -78,6 +78,74 @@ public function getMatcheResult($mid,$Uid)
 	     return $this->db->get()->row_array();
 }
 
+   
+
+public function get_withdrawal_tranHistory($id)
+		{
+		
+		$this->db->select('*');
+		$this->db->from('withdrawal_request');
+		$this->db->where('USR_ID', $id);
+		return $this->db->get()->result_array();
+
+
+		}
+
+
+public function get_all_withdrawal_request()
+		{
+		
+		$this->db->select('*');
+		$this->db->from('withdrawal_request');
+		return $this->db->get()->result_array();
+
+
+		}
+
+
+  public function update_status($tbl, $id, $status)
+    {
+        if ($tbl == 'withdrawal_request') {
+            $data['status'] = $status;
+            $this->db->where('withdrawal_id', $id);
+            $this->db->update($tbl, $data);
+        } 
+        //     $data['status'] = $status;
+        //     $this->db->where('id', $id);
+        //     $this->db->update($tbl, $data);
+    	    // }
+    	
+    	if ($tbl == 'players') {
+            $data['status'] = $status;
+            $this->db->where('uid', $id);
+            $this->db->update($tbl, $data);
+        }
+
+    }
+
+    public function get_all_users() {
+    	$this->db->select('*');
+		$this->db->from('players');
+		return $this->db->get()->result_array();
+    }
+
+
+public function allreferralEarning($id){
+
+		$this->db->select('*');
+		$this->db->from('refferal_earning');
+		$this->db->where('referrer_owner',$id);
+		return $this->db->get()->result_array();
+	}
+
+public function get_all_match_result() {
+	
+		$this->db->select('*');
+		$this->db->from('match_result');
+		return $this->db->get()->result_array();
+}
+
+
    }
 
 

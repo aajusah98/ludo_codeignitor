@@ -271,6 +271,22 @@ if(!function_exists('comission'))
 }
 
 
+/**
+ * This function is used to give refferal comssison
+ * @param {array} view data.
+ */
+if(!function_exists('refferalComission'))
+{
+    function refferalComission($money)
+    {
+
+        $betAmount=$money;
+            $comission1=$betAmount*0.01;
+            return $comission1;
+    
+    }
+
+}
 
 
 // /**
@@ -325,6 +341,96 @@ if(!function_exists('comission'))
 
 
 
+/**
+ * This function used to get total match played 
+ * @param {array} view data.
+ */
+if(!function_exists('totalMatchPlayed'))
+{
+    function totalMatchPlayed($Uid)
+    {
+        $CI =& get_instance();
+        $whereCondition=array(
+        'Result_updated_by'=>$Uid
+        );
+
+        $CI->db->select('*');
+         $CI->db->from('match_result');
+         $CI->db->where($whereCondition);
+         return $CI->db->get()->num_rows(); 
+    }
+
+}
+
+
+/**
+ * This function used to get match result accouding to usedid and mid
+ * @param {array} view data.
+ */
+if(!function_exists('totalWin'))
+{
+    function totalWin($Uid)
+    {
+        $CI =& get_instance();
+        $whereCondition=array(
+        'Result_updated_by'=>$Uid,
+        'win_status'=>'I Win'
+        );
+
+        $CI->db->select('*');
+         $CI->db->from('match_result');
+         $CI->db->where($whereCondition);
+         return $CI->db->get()->num_rows(); 
+    }
+
+}
+
+
+/**
+ * This function used to get match result accouding to usedid and mid
+ * @param {array} view data.
+ */
+if(!function_exists('totalLoss'))
+{
+    function totalLoss($Uid)
+    {
+        $CI =& get_instance();
+        $whereCondition=array(
+        'Result_updated_by'=>$Uid,
+        'Loss_Status'=>'I Loss'
+
+        );
+
+        $CI->db->select('*');
+         $CI->db->from('match_result');
+         $CI->db->where($whereCondition);
+         return $CI->db->get()->num_rows(); 
+    }
+
+}
+
+
+/**
+ * This function used to get match result accouding to usedid and mid
+ * @param {array} view data.
+ */
+if(!function_exists('cancleMatch'))
+{
+    function cancleMatch($Uid)
+    {
+        $CI =& get_instance();
+        $whereCondition=array(
+        'Result_updated_by'=>$Uid,
+        'cancle_status'=>'Cancle'
+        );
+
+        $CI->db->select('*');
+         $CI->db->from('match_result');
+         $CI->db->where($whereCondition);
+         return $CI->db->get()->num_rows(); 
+    }
+
+}
 
 
 

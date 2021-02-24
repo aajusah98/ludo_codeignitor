@@ -21,12 +21,12 @@
 		 	<div class="container text-center text-md-left mt-5">
 		 		
 		 		<div class="row">
-		 			<div class="col-md-3 mx-auto mb-4 letsplay">
-		 				<a href="#">
-		 				<h6 class="text-uppercase font-weight-bold">Lets Play</h6>
-		 				<hr class="bg-success mb-4 mt-0 d-inline-block mx-auto" style="width: 125px; height: 2px">
-		 				</a>
-		 			</div>
+			 			<!-- <div class="col-md-3 mx-auto mb-4 letsplay">
+			 				<a href="#">
+			 				<h6 class="text-uppercase font-weight-bold">Lets Play</h6>
+			 				<hr class="bg-success mb-4 mt-0 d-inline-block mx-auto" style="width: 125px; height: 2px">
+			 				</a>
+			 			</div> -->
 		 			<!-- <div class="col-md-3 mx-auto mb-4 about_us">
 		 				<a href="#">
 		 				<h6 class="text-uppercase font-weight-bold">About Us</h6>
@@ -38,16 +38,38 @@
 		 				</a>
 		 			</div> -->
 		 			<div class="col-md-3 mx-auto mb-4 contact">
-		 				<h6 class="text-uppercase font-weight-bold">Contact</h6>
-		 				<hr class="bg-success mb-4 mt-0 d-inline-block mx-auto" style="width: 80px; height: 2px">
+		 				<h6 class="text-uppercase font-weight-bold">Contact Us</h6>
+		 				<hr class="bg-success mb-4 mt-0 d-inline-block mx-auto" style="width: 100px; height: 2px">
 		 				<ul class="list-unstyled">
-		 					<li class="my-2"><i class="fas fa-phone mr-3"></i> <span> +91 9660923040</span> </li>
+		 					<a href="http://wa.me/+919660923040"><i class="fab fa-whatsapp text-white mr-4 h1"></i></a>
+                			<a href="https://t.me/LUDOBATTLES1"><i class="fab fa-telegram text-white mr-4 h1"></i></a>
 		 				</ul>
 		 			</div>
-		 			<div class="col-md-3 mx-auto mb-4">
+		 			<!-- <div class="col-md-3 mx-auto mb-4">
 		 				<a href="<?php echo base_url();?>welcome/termCondition">
 		 				<h6 class="text-uppercase font-weight-bold terms">Terms & Conditions</h6>
 		 				<hr class="bg-success mb-4 mt-0 d-inline-block mx-auto" style="width: 200px; height: 2px">
+		 				</a>
+		 			</div> -->
+
+		 			<div class="col-md-3 mx-auto mb-4">
+		 				<a href="<?php echo base_url();?>welcome/term_condition_paytm">
+		 				<h6 class="text-uppercase font-weight-bold terms">Terms & Conditions</h6>
+		 				<hr class="bg-success mb-4 mt-0 d-inline-block mx-auto" style="width: 200px; height: 2px">
+		 				</a>
+		 			</div>
+
+		 			<div class="col-md-3 mx-auto mb-4">
+		 				<a href="<?php echo base_url();?>welcome/privacy_policy">
+		 				<h6 class="text-uppercase font-weight-bold terms">Privacy Policy</h6>
+		 				<hr class="bg-success mb-4 mt-0 d-inline-block mx-auto" style="width: 150px; height: 2px">
+		 				</a>
+		 			</div>
+
+		 			<div class="col-md-3 mx-auto mb-4">
+		 				<a href="<?php echo base_url();?>welcome/refundPolicy">
+		 				<h6 class="text-uppercase font-weight-bold terms">Refund Policy</h6>
+		 				<hr class="bg-success mb-4 mt-0 d-inline-block mx-auto" style="width: 150px; height: 2px">
 		 				</a>
 		 			</div>
 

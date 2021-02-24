@@ -23,13 +23,13 @@
   <div class="row">
       <div class="form">
         <ul class="tab-group">
-        <li class="tab active"><a href="#signup">Add Money</a></li>
+        <li class="text-center">Add Money</li>
         <li class="tab" style="display: none;"><a href="#login">Withdraw Money</a></li>
       </ul>
       
       <div class="tab-content">
         <div id="signup">   
-          <h1>Add Money Wallet</h1>
+          <h1>Add Money To Wallet</h1>
 
            <!--  <?php if ($this->session->flashdata('error_msg_signup_user')) { ?>
             <div class="col-md-12 alert alert-danger" >
