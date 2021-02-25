@@ -1955,4 +1955,23 @@ public function referalEarning() {
 }
 
 
+public function contactUs() {
+
+$this->load->view('contact_us');
+
+}
+
+public function aboutUs() {
+
+$this->load->view('aboutUs');
+
+}
+
+public function disclaimer() {
+
+$this->load->view('disclaimer');
+
+}
+
+
 }

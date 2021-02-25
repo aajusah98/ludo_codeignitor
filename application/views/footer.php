@@ -20,58 +20,94 @@
 
 		 	<div class="container text-center text-md-left mt-5">
 		 		
-		 		<div class="row">
-			 			<!-- <div class="col-md-3 mx-auto mb-4 letsplay">
-			 				<a href="#">
-			 				<h6 class="text-uppercase font-weight-bold">Lets Play</h6>
-			 				<hr class="bg-success mb-4 mt-0 d-inline-block mx-auto" style="width: 125px; height: 2px">
-			 				</a>
-			 			</div> -->
-		 			<!-- <div class="col-md-3 mx-auto mb-4 about_us">
-		 				<a href="#">
-		 				<h6 class="text-uppercase font-weight-bold">About Us</h6>
-		 				<hr class="bg-success mb-4 mt-0 d-inline-block mx-auto" style="width: 125px; height: 2px"> -->
-		 				<!-- <p class="mt-2"></p> -->
-		 				<!-- <ul class="list-unstyled">
-		 					<p>About Company</p>
-		 				</ul>
+		 		<div class="row" style="justify-content:center; ">
+
+		 			<ul  id="footer-ul" style="list-style: none;">
+		 			<li class="mr-4"><a href="<?php echo base_url(); ?>about-us/">
+		 				<p class="font-weight-bold">About Us</p>
+		 					</a></li>
+		 			<li class="mr-4">	<a href="<?php echo base_url();?>contact-us/">
+		 				<p class="font-weight-bold">Contact Us</p>
 		 				</a>
-		 			</div> -->
-		 			<div class="col-md-3 mx-auto mb-4 contact">
-		 				<h6 class="text-uppercase font-weight-bold">Contact Us</h6>
+		 				</li>
+
+		 			<li class="mr-4"><a href="<?php echo base_url(); ?>disclaimer-and-intellectual-property/">
+		 				<p class="font-weight-bold">Disclaimer & Intellectual Property</p>
+		 				</li>
+		 			<li class="mr-4"><a href="<?php echo base_url();?>privacy-policy/">
+		 				<p class="font-weight-bold">Privacy Policy</p>
+		 				</a></li>
+		 			<li class="mr-4"><a href="<?php echo base_url();?>term-and-condition/">
+		 				<p class="font-weight-bold">Terms & Conditions</p>
+		 				</a></li>
+		 			<li class="mr-4"><a href="<?php echo base_url();?>refund-policy/">
+		 				<p class="font-weight-bold">Refund Policy</p>
+		 				</a></li>	
+
+		 			</ul>
+
+
+
+<!-- 
+		 			<div class="col-md-2 mx-auto mb-4 contact">
+		 				<a href="<?php echo base_url(); ?>welcome/aboutUs">
+		 				<p class="font-weight-bold">About Us</p>
 		 				<hr class="bg-success mb-4 mt-0 d-inline-block mx-auto" style="width: 100px; height: 2px">
+		 					</a>	
+		 				</div>
+
+
+		 			<div class="col-md-2 mx-auto mb-4 contact">
+		 				<a href="<?php echo base_url();?>welcome/contactUs">
+		 				<p class="">Contact Us</p>
+		 				<hr class="bg-success mb-4 mt-0 d-inline-block mx-auto" style="width: 100px; height: 2px">
+		 				</a>
+		 				
 		 				<ul class="list-unstyled">
 		 					<a href="http://wa.me/+919660923040"><i class="fab fa-whatsapp text-white mr-4 h1"></i></a>
                 			<a href="https://t.me/LUDOBATTLES1"><i class="fab fa-telegram text-white mr-4 h1"></i></a>
 		 				</ul>
 		 			</div>
-		 			<!-- <div class="col-md-3 mx-auto mb-4">
+
+
+		 			<div class="col-md-2 mx-auto mb-4 contact">
+		 				<a href="<?php echo base_url(); ?>welcome/aboutUs">
+		 				<p class="">Disclaimer & Intellectual Property</p>
+		 				<hr class="bg-success mb-4 mt-0 d-inline-block mx-auto" style="width: 100px; height: 2px">
+		 					</a>	
+		 				</div>
+
+
+		 				
+
+		 			<div class="col-md-3 mx-auto mb-4">
 		 				<a href="<?php echo base_url();?>welcome/termCondition">
-		 				<h6 class="text-uppercase font-weight-bold terms">Terms & Conditions</h6>
-		 				<hr class="bg-success mb-4 mt-0 d-inline-block mx-auto" style="width: 200px; height: 2px">
-		 				</a>
-		 			</div> -->
-
-		 			<div class="col-md-3 mx-auto mb-4">
-		 				<a href="<?php echo base_url();?>welcome/term_condition_paytm">
-		 				<h6 class="text-uppercase font-weight-bold terms">Terms & Conditions</h6>
+		 				<p class="text-uppercase font-weight-bold terms">Terms & Conditions</p>
 		 				<hr class="bg-success mb-4 mt-0 d-inline-block mx-auto" style="width: 200px; height: 2px">
 		 				</a>
 		 			</div>
 
-		 			<div class="col-md-3 mx-auto mb-4">
+
+ 					<div class="col-md-2 mx-auto mb-4">
 		 				<a href="<?php echo base_url();?>welcome/privacy_policy">
-		 				<h6 class="text-uppercase font-weight-bold terms">Privacy Policy</h6>
+		 				<p class="">Privacy Policy</p>
 		 				<hr class="bg-success mb-4 mt-0 d-inline-block mx-auto" style="width: 150px; height: 2px">
 		 				</a>
 		 			</div>
 
-		 			<div class="col-md-3 mx-auto mb-4">
-		 				<a href="<?php echo base_url();?>welcome/refundPolicy">
-		 				<h6 class="text-uppercase font-weight-bold terms">Refund Policy</h6>
-		 				<hr class="bg-success mb-4 mt-0 d-inline-block mx-auto" style="width: 150px; height: 2px">
+		 			<div class="col-md-2 mx-auto mb-4">
+		 				<a href="<?php echo base_url();?>welcome/term_condition_paytm">
+		 				<p class="">Terms & Conditions</p>
+		 				<hr class="bg-success mb-4 mt-0 d-inline-block mx-auto" style="width: 200px; height: 2px">
 		 				</a>
 		 			</div>
+		 			
+		 			<div class="col-md-2 mx-auto mb-4">
+		 				<a href="<?php echo base_url();?>welcome/refundPolicy">
+		 				<p class="">Refund Policy</p>
+		 				<hr class="bg-success mb-4 mt-0 d-inline-block mx-auto" style="width: 150px; height: 2px">
+		 				</a>
+		 			</div -->
 
 		 		</div>
 	 		</div>
@@ -79,10 +115,10 @@
 	 </footer>
 <style type="text/css">
 	
-.about_us h6{
+/*.about_us p{
 	font-family: 'Allerta Stencil';
-}
-.about_us {
+}*/
+/*.about_us {
 	font-family: 'Allerta Stencil';
 	font-size: 20px;
 }
@@ -101,8 +137,15 @@
 .terms {
 	font-family: 'Allerta Stencil';
 	font-size: 20px;
-}
+}*/
 
+@media screen and (min-width: 950px) {
+	  
+	  #footer-ul{
+	  	display: flex;
+	  }
 
+  }
 
 </style>
+
