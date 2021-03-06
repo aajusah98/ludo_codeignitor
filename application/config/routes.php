@@ -59,6 +59,6 @@ $route['disclaimer-and-intellectual-property']='welcome/disclaimer';
 $route['privacy-policy']='welcome/privacy_policy';
 $route['term-and-condition']='welcome/term_condition_paytm';
 $route['refund-policy']='welcome/refundPolicy';
-
+$route['admin']='welcome/admin_login';
 
 

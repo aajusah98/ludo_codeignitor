@@ -65,7 +65,7 @@
             <div class="card-body">
               <a href="#">
                  <h3 class="card-text text-white">Rs.<span id="wallet"><?php echo $users['money_wallet'];  ?></span></h3>
-               <a href="<?php echo base_url();?>welcome/paytmCheckOutPage"><h6 class="text-warning"><i class="fa fa-plus" >  </i><span class="font-weight-bold"> Add Balance</span></h6></a> 
+               <a href="<?php echo base_url();?>welcome/paykunCheckOutPage"><h6 class="text-warning"><i class="fa fa-plus" >  </i><span class="font-weight-bold"> Add Balance</span></h6></a> 
               </a>
             </div>
          </div>

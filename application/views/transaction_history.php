@@ -118,7 +118,7 @@ table, th, td {
             <td><?php echo $key['payment_type'];  ?></td>
             <td><?php echo $key['PAYMENTMODE'];  ?></td>
             <td><?php echo $key['TXNAMOUNT'];  ?></td>
-            <td><?php echo $key['TXNDATE'];  ?></td>
+            <td><?php echo date('d-m-Y H:i:s', $key['TXNDATE']);  ?></td>
             <td><?php echo $key['TXNID'];  ?></td>
             <td><?php echo $key['ORDERID'];  ?></td>
             <td><?php echo $key['STATUS'];  ?></td>

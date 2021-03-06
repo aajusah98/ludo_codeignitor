@@ -22,34 +22,27 @@
    
    <div class="row">
 
-    <form id="ContactUs100"  action="" method="post">&nbsp;
-        <table style="width: 564px; max-width: 550px; border: 0px; height: 412px;" cellspacing="0" cellpadding="8">
-        <tbody>
-        <tr>
-        <td><label for="Name">Name*:</label></td>
-        <td><input style="width: 100%; max-width: 250px;" maxlength="60" name="Name" type="text" /></td>
-        </tr>
-        <tr>
-        <td><label for="PhoneNumber">Phone number:</label></td>
-        <td><input style="width: 100%; max-width: 250px;" maxlength="43" name="PhoneNumber" type="text" /></td>
-        </tr>
-        <tr>
-        <td><label for="FromEmailAddress">Email address*:</label></td>
-        <td><input style="width: 100%; max-width: 250px;" maxlength="90" name="FromEmailAddress" type="text" /></td>
-        </tr>
-        <tr>
-        <td><label for="Comments">Comments*:</label></td>
-        <td><textarea style="width: 100%; max-width: 350px;" cols="40" name="Comments" rows="7"></textarea></td>
-        </tr>
-        <tr>
-        <td>* - required fields</td>
-        <td><input name="skip_Submit" type="submit" value="Submit" /></td>
-        </tr>
-        </tbody>
-        </table>
-        </form>
+   
 
+ 
 
+      <div class="col-md-12 text-center">
+       <h1 class="font-weight-bold">Contact Us</h1>
+    </div>
+
+      
+   <div class="col-md-12  text-center">
+      <p class="font-weight-bold">Address: power house, shyampura kacholiya, bassi, jaipur, 303301</p>    
+    </div>
+   
+    <div class="col-md-12 text-center">
+      <p class="font-weight-bold"> Phone : 9660923040 </p>
+    </div>
+
+      <div class="col-md-12 text-center pb-3">
+      <p class="font-weight-bold"> Email : mnjha82828@gmail.com </p>
+    </div>
+    
    </div>
 
 
@@ -62,10 +55,9 @@
 
 
 
-
-  <!-- footer -->
- <?php $this->load->view('footer'); ?>
-
+<div style="position: absolute; width: 100%; bottom: 0;">
+<?php $this->load->view('footer'); ?>
+</div>
 </body>
 
 </html>

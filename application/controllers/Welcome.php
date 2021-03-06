@@ -388,6 +388,116 @@ class Welcome extends CI_Controller {
 
 
 
+/**
+        ===========================================================
+        Operation   :   paykun payment checkout page
+                    -----------------------------------------------
+        Input       :   
+                    -----------------------------------------------
+        Return      :   load ui to add money
+        ===========================================================
+    **/
+
+			public function paykunCheckOutPage()
+			{
+
+				$this->auth_login();
+				$this->load->view('Paykun/paykun_Checkout');
+
+			}
+
+
+/**
+        ===========================================================
+        Operation   :   paykun payment checkout page
+                    -----------------------------------------------
+        Input       :   
+                    -----------------------------------------------
+        Return      :   load ui to add money
+        ===========================================================
+    **/
+
+			public function paykunSubmitRequest()
+			{
+
+				require 'src/Payment.php';
+				require 'src/Validator.php';
+				require 'src/Crypto.php';
+				if(isset($_POST['load_amt'])) {
+						
+					$fname =$this->input->post('fname');
+					$product_name = $this->input->post('product_name');
+					$email = $this->input->post('email');
+					$amount =$this->input->post('amount');
+					$contact = $this->input->post('contact');
+					$country = $this->input->post('country');
+					$state =$this->input->post('state');
+					$city = $this->input->post('city');
+					$postalcode = $this->input->post('postalcode');
+					$address =$this->input->post('address');
+					$city = $this->input->post('city');
+
+					/**
+					 *  Parameters requires to initialize an object of Payment are as follow.
+					 *  mid => Merchant Id provided by Paykun
+					 *  accessToken => Access Token provided by Paykun
+					 *  encKey =>  Encryption provided by Paykun
+					 *  isLive => Set true for production environment and false for sandbox or testing mode
+					 *  isCustomTemplate => Set true for non composer projects, will disable twig template
+					 */
+
+					$obj = new \Paykun\Checkout\Payment(PAYKUN_MERCHANT_MID, ﻿Access_Token , API_Secret, true, true);
+
+					$successUrl = base_url().'Paykun/sucessPaymet';
+					$failUrl 	=  base_url().'Paykun/failedPayment';
+
+					function generateByMicrotime() {
+					    $microtime = str_replace('.', '', microtime(true));
+					    return (substr($microtime, 0, 14));
+					}
+
+					// Initializing Order
+					$obj->initOrder(generateByMicrotime(), $product_name,  $amount, $successUrl,  $failUrl, 'INR');
+
+					// Add Customer
+					$obj->addCustomer($fname, $email, $contact);
+
+					// Add Shipping address
+					$obj->addShippingAddress('', '', '', '', '');
+
+					$obj->addBillingAddress('', '', '', '', '');
+					// Add Billing Address
+
+					//Enable if require custom fields
+					$obj->setCustomFields(array('udf_1' => 'Some Dummy text'));
+					//Render template and submit the form
+					echo $obj->submit();
+
+					/* Check for transaction status
+					 * Once your success or failed url called then create an instance of Payment same as above and then call getTransactionInfo like below
+					 *  $obj = new Payment('merchantUId', 'accessToken', 'encryptionKey', true, true); //Second last false if sandbox mode
+					 *  $transactionData = $obj->getTransactionInfo(Get payment-id from the success or failed url);
+					 *  Process $transactionData as per your requirement
+					 *
+					 * */
+
+
+					
+
+
+
+				}
+
+
+				
+			}
+
+
+
+
+
+
+
 	/**
         ===========================================================
         Operation   :   edit user
