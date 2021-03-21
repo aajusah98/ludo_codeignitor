@@ -707,6 +707,16 @@ class Welcome extends CI_Controller {
     				'Match_Status'=>1
     			);
 
+
+    					$data['user_id']=$user_id;
+    					$data['betAmount']=$betAmount;
+						$to  =  Admin_email;
+						$message = $this->load->view('emails/new_match_email', $data, TRUE);
+
+						$headers = 'From:admin@ludobattles.com' . "\r\n";
+						$subject = 'New Match set';
+						$sendmail = send_mails($to, $subject, $message, $headers);
+
     			$insert=$this->db->insert('match_details',$insertMatch);
 
     			if ($insert) {
@@ -1025,7 +1035,8 @@ public function update_user_activity() {
 				 		$this->db->from('players_login_deatils');
 				 	   	$this->db->where("last_activity > $current_timestamp", NULL, FALSE);
 					    $activeUser = $this->db->get()->num_rows();
-					    print_r($activeUser);
+					    print_r($activeUser+2);
+					    
 						}
 					}
 			}
@@ -1108,7 +1119,7 @@ public function update_user_activity() {
 
 			public function refundPolicy(){
 						
-				$this->load->view('Refund_and_Cancellation_Policy');
+				$this->load->view('refer_earn');
 				}	
 
 
@@ -1840,7 +1851,16 @@ $result=array(
 					$withdrawalAmount=$this->input->post('withdrawlAmount');
 					$Upi_id=$this->input->post('Upi_id');
 
-					$insertData=array(
+					$this->db->select('money_wallet');
+					$this->db->from('players');
+					$this->db->where('uid',$USR_ID);
+					$UserData=$this->db->get()->row_array();
+					// print_r($UserData);
+					// die();
+
+					if ($UserData['money_wallet']>$withdrawalAmount) {
+					
+						$insertData=array(
 						'ORDER_ID'=>$ORDER_ID,
 						'USR_ID'=>$USR_ID,
 						'withdrawalAmount'=>$withdrawalAmount,
@@ -1855,6 +1875,16 @@ $result=array(
 							echo "</script>";
 							redirect('welcome/withdrawalTransaction');
 					}	
+
+
+					}
+					else{
+
+					$this->session->set_flashdata('withdrawal_amt_error', '<span id="signinMsg" style="position: relative; top: -7px; color:red">Nice Try Buddy But You need More Money For withdrawlAmount</span>');
+						redirect('welcome/userprofile/'.$USR_ID);
+					}
+
+					
 
 				}
 

@@ -41,6 +41,12 @@
                       <?php   echo $this->session->userdata('money_add_fail'); ?>
                   </div>
                 <?php }?>
+
+                 <?php if ($this->session->flashdata('withdrawal_amt_error')) { ?>
+            <div class="col-md-12 alert alert-danger" >
+            <?php echo $this->session->flashdata('withdrawal_amt_error');  ?>
+          </div>
+            <?php }?>
             
 
 
@@ -268,7 +274,7 @@
      }else{
       modal_content.classList.remove("text-danger");
       // withdrawl_submit.classList.remove("not-show-anything");
-      modal_content.innerHTML = `<form action="<?php echo base_url(); ?>welcome/withdrawalReques" method="post">
+      modal_content.innerHTML = `<form id='withdrawal_form' action="<?php echo base_url(); ?>welcome/withdrawalReques" method="post">
   <div class="form-group row">
     <label for="number" class="col-sm-3 col-form-label">Mobile :</label>
     <div class="col-sm-7">
@@ -288,19 +294,13 @@
   <input type="text" id="ORDER_ID" tabindex="1" maxlength="20" size="20"
             name="ORDER_ID" autocomplete="off"
             value="<?php echo  "ORDS" . uniqid();?>" hidden readonly>
-  <button type="submit" class="btn btn-primary " id="withdrawl-submit" name="withdrawl-submit" onClick="clearData(this.id)">Submit</button>
+  <button type="submit" class="btn btn-primary " id="withdrawl-submit" name="withdrawl-submit" >Submit</button>
 
   </form>`;
      
      }
 
     
-
-    function clearData() {
-      document.getElementById('amount').value='';
-
-    }
-
      function enteredAmountKeyPress(id)
     {
         let enteredAmount = document.getElementById(id).value;
@@ -344,7 +344,12 @@ setInterval(function(){
 
 
 
-<?php } ?>
+<?php } 
+
+
+
+
+ ?>
 
 
    </script>

@@ -41,7 +41,7 @@
 		 				<p class="font-weight-bold">Terms & Conditions</p>
 		 				</a></li>
 		 			<li class="mr-4"><a href="<?php echo base_url();?>refund-policy/">
-		 				<p class="font-weight-bold">Refund Policy</p>
+		 				<p class="font-weight-bold">Refer And Earn</p>
 		 				</a></li>	
 
 		 			</ul>

@@ -31,6 +31,8 @@
 
           <div class="card-body">
             <div class="text-center">
+               <h4><a href="<?php echo base_url();?>refund-policy/" style="color: cyan;"> REFER & EARN <span style="color: red;">Click Here</span></a></h4>
+                <br>
                 <p class="text-white">PLAY - WIN - EARN! खेलो - जीतो - कमाओ!</p>
                 <p class="text-white">WIN MORE THAN 1,00,000 PER MONTH!</p>
                 <p class="text-white">Please <a href="<?php echo base_url(); ?>register#login" style="color: cyan;"> LOGIN & PLAY NOW</a></p>

@@ -162,3 +162,5 @@ defined("MAIL_METHOD") OR define("MAIL_METHOD", "server");
 defined("﻿Access_Token") OR define("﻿Access_Token", "4AEAA9844FB2C3FAE8225C93C5CA3A9D");
 defined("API_Secret") OR define("API_Secret", "1B1FD77298BA993F47C1BC6FE1A17765");
 defined("PAYKUN_MERCHANT_MID") OR define("PAYKUN_MERCHANT_MID", "544771114566593");
+
+defined("Admin_email") OR define("Admin_email", "ajaysah531@gmail.com");
